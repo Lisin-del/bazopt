@@ -9,5 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 public class RegistrationController {
+    public void registerNewUser() {
 
+    }
 }

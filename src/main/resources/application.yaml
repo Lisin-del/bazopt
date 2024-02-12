@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/diploma
+    username: postgres
+    password: lisapilka
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate.ddl-auto: update
