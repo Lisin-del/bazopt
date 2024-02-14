@@ -19,25 +19,27 @@
         <div class="row">
             <div class="col"></div>
             <div class="col">
-                <form>
+                <form id="registrationFormContainer">
                     <div id="inputFirstNameRegistrationPage">
-                        <input type="email" class="form-control" id="inputEmail4" placeholder="First name">
+                        <input type="text" class="form-control" id="inputFirstName" placeholder="First name" name="Firstname">
                     </div>
                     <div id="inputSecondNameRegistrationPage" class="registrationForm">
-                        <input type="email" class="form-control" id="inputEmail4" placeholder="Last name">
+                        <input type="text" class="form-control" id="inputLastName" placeholder="Last name" name="Lastname">
                     </div>
                     <div id="inputEmailRegistrationPage" class="registrationForm">
-                        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                        <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="Email">
                     </div>
                     <div id="inputPasswordRegistrationPage" class="registrationForm">
-                        <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="Password">
                     </div>
-                    <button type="submit" class="btn btn-primary registrationForm">Submit</button>
+                    <button type="button" class="btn btn-primary registrationForm" onclick="sendRegistrationData()">Submit</button>
                 </form>
             </div>
             <div class="col"></div>
         </div>
     </div>
+
+    <script src="js/RegistrationLogic.js"></script>
 </body>
 
 </html>
