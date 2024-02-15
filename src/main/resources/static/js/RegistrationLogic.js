@@ -2,6 +2,10 @@ function redirectToRegisterPage() {
     window.location.href = "registration.html";
 }
 
+function redirectToLoginPage() {
+    window.location.href = "login.html";
+}
+
 function sendRegistrationData() {
    
     try {
@@ -32,4 +36,5 @@ function sendRegistrationData() {
     } catch (e) {
         console.error(e);
     }
+    redirectToLoginPage();
 }
