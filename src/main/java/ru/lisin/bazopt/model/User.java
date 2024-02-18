@@ -1,7 +1,11 @@
 package ru.lisin.bazopt.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+
+import java.util.stream.Stream;
 
 @Entity
 @Table(name = "li_user")
@@ -15,4 +19,17 @@ public class User {
     private String email;
     private String password;
     private String role;
+
+    @AllArgsConstructor
+    public enum Role {
+        USER("user"),
+        ADMIN("admin");
+
+        @Getter
+        private String value;
+
+        public Role roleOf(String value) {
+            return Stream.of(values()).filter(role -> role.value.equalsIgnoreCase(value)).findFirst().orElse(null);
+        }
+    }
 }

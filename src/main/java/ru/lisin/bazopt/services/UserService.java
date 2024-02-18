@@ -6,4 +6,6 @@ public interface UserService {
     User createUser(User user);
 
     User getUserById(long id);
+
+    User getUserByEmail(String userEmail);
 }

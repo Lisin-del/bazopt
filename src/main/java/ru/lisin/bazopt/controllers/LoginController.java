@@ -3,12 +3,11 @@ package ru.lisin.bazopt.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 public class LoginController {
-    @RequestMapping
-    public String getLoginPage() {
-        return "redirect:/login.html";
-    }
+//    @RequestMapping
+//    public String getLoginPage() {
+//        return "redirect:/login.html";
+//    }
 }
