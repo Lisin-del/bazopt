@@ -1,4 +1,4 @@
-package ru.lisin.bazopt.configuration;
+package ru.lisin.bazopt.configuration.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -56,7 +56,7 @@ public class DefaultSecurityConfig {
             HttpSessionCsrfTokenRepository httpSessionCsrfTokenRepository = new HttpSessionCsrfTokenRepository();
             httpSecurity.addFilterAfter(new GetCSRFFilter(), ExceptionTranslationFilter.class);
             httpSecurity.csrf(
-                    csrf -> csrf.csrfTokenRequestHandler(new XorCsrfTokenRequestAttributeHandler())
+                    csrf -> csrf.csrfTokenRequestHandler(new CSRFTokenRequestHandler())
                             .csrfTokenRepository(httpSessionCsrfTokenRepository)
                             .sessionAuthenticationStrategy(new CsrfAuthenticationStrategy(httpSessionCsrfTokenRepository)));
 //                            .ignoringRequestMatchers("/register"));

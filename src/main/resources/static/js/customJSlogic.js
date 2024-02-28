@@ -22,10 +22,8 @@ function getCSRFToken() {
     }
 }
 
-function sendRegistrationData() {   
+async function sendRegistrationData() {   
     try {
-        // csrfToken = getCSRFToken();
-        // console.log(csrfToken);
         let formData = new FormData(document.getElementById("registrationFormContainer"));
         let firstNameVar = formData.get("Firstname");
         let lastNameVar = formData.get("Lastname");
@@ -39,23 +37,31 @@ function sendRegistrationData() {
             role: "user"
         }
         let userJson = JSON.stringify(jsonString);
-
-        fetch("/csrf").then(response => {
-            if (response.status === 200) {
-                return response.json();
-            }
-            throw new Error("Unknown status: " + response.status);
-        }).then(csrf => {
-            const headers = {};
-            headers[csrf.headerName] = btoa(csrf.token);
-            return fetch("http://127.0.0.1:8080/register", {
-                method: "POST",    
-                headers: headers,
-                body: userJson
-            })
-        });
+        fetch("http://127.0.0.1:8080/csrf")
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                }
+                throw new Error("Unknown status: " + response.status);
+            }).then(csrf => {
+                if (csrf && csrf.headerName) {
+                    headers = {};
+                    headers[csrf.headerName] = csrf.token;
+                    headers['Content-Type'] = 'application/json';
+                    return fetch("http://127.0.0.1:8080/register", {
+                        method: "POST",    
+                        headers: headers,
+                        body: userJson
+                    })
+                } else {
+                    throw new Error("!!!!");
+                }
+                
+            });
     } catch (e) {
         console.error(e);
     }
     //redirectToLoginPage();
 }
+
+
