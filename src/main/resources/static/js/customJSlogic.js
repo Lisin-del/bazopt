@@ -1,6 +1,3 @@
-// const csrfToken1 = document.cookie;
-// console.log(csrfToken1);
-
 function redirectToRegisterPage() {
     window.location.href = "registration.html";
 }
@@ -22,7 +19,7 @@ function getCSRFToken() {
     }
 }
 
-async function sendRegistrationData() {   
+function sendRegistrationData() {
     try {
         let formData = new FormData(document.getElementById("registrationFormContainer"));
         let firstNameVar = formData.get("Firstname");
@@ -52,16 +49,49 @@ async function sendRegistrationData() {
                         method: "POST",    
                         headers: headers,
                         body: userJson
-                    })
+                    });
                 } else {
-                    throw new Error("!!!!");
+                    throw new Error("There are errors with CSRF token getting");
                 }
                 
             });
     } catch (e) {
         console.error(e);
     }
-    //redirectToLoginPage();
+    redirectToLoginPage();
 }
 
+function sendLoginData() {
+    try {
+        let formData = new FormData(document.getElementById("loginFormContainer"));
+        fetch("http://127.0.0.1:8080/csrf")
+                    .then(response => {
+                        if (response.status === 200) {
+                            return response.json();
+                        }
+                        throw new Error("Unknown status: " + response.status);
+                    }).then(csrf => {
+                        if (csrf && csrf.headerName) {
+                            headers = {};
+                            formData.append('_csrf', csrf.token);
+                            headers[csrf.headerName] = csrf.token;
+                            return fetch("http://127.0.0.1:8080/login-process", {
+                                method: "POST",
+                                body: formData,
+                                headers: headers
+                            });
+                        } else {
+                            throw new Error("There are errors with CSRF token getting");
+                        }
 
+                    })
+    } catch (e) {
+        console.error(e);
+    }
+}
+
+//
+//        let response = await fetch("http://127.0.0.1:8080/login-process", {
+//            method: 'POST',
+//            body: formData
+//        });

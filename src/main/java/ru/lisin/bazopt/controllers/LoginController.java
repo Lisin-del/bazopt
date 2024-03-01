@@ -12,8 +12,8 @@ public class LoginController {
 //        return "redirect:/login.html";
 //    }
 
-    @PostMapping("/test")
-    public String getTest(@RequestBody Map<String, String> body) {
+    @GetMapping("/test")
+    public String getTest() {
         int i = 0;
         return "test";
     }

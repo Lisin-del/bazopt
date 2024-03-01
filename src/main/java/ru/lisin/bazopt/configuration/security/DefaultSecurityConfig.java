@@ -19,6 +19,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.ExceptionTranslationFilter;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.csrf.*;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import ru.lisin.bazopt.filter.GetCSRFFilter;
 
 @EnableWebSecurity
@@ -38,28 +39,35 @@ public class DefaultSecurityConfig {
                     .authorizeHttpRequests(
                             authorizationHttpRequest -> authorizationHttpRequest.requestMatchers(
                                     "/js/**",
-                                    "/css/**"
-//                                    "/registration.html",
-//                                    "/register"
+                                    "/css/**",
+                                    "/registration.html",
+                                    "/register",
+                                    "/csrf"
                             ).permitAll()
                     ).authorizeHttpRequests(
                             authorizationHttpRequest -> authorizationHttpRequest.anyRequest().authenticated()
                     ).formLogin(
-//                            formLogin -> formLogin.loginPage("/login.html")
-//                                    .usernameParameter("userEmail")
-//                                    .passwordParameter("userPassword")
-//                                    .permitAll()
-                        formLogin -> formLogin.permitAll()
+                            formLogin -> formLogin.loginPage("/login.html")
+                                    .loginProcessingUrl("/login-process")
+                                    .usernameParameter("email")
+                                    .passwordParameter("password")
+                                    .permitAll()
+//                        formLogin -> formLogin.permitAll()
                     ).logout(
-                            logout -> logout.permitAll()
+                            logout -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                                    .clearAuthentication(true)
+                                    .invalidateHttpSession(true)
+                                    .permitAll()
                     );
             HttpSessionCsrfTokenRepository httpSessionCsrfTokenRepository = new HttpSessionCsrfTokenRepository();
             httpSecurity.addFilterAfter(new GetCSRFFilter(), ExceptionTranslationFilter.class);
             httpSecurity.csrf(
                     csrf -> csrf.csrfTokenRequestHandler(new CSRFTokenRequestHandler())
                             .csrfTokenRepository(httpSessionCsrfTokenRepository)
-                            .sessionAuthenticationStrategy(new CsrfAuthenticationStrategy(httpSessionCsrfTokenRepository)));
-//                            .ignoringRequestMatchers("/register"));
+                            .sessionAuthenticationStrategy(new CsrfAuthenticationStrategy(httpSessionCsrfTokenRepository))
+                            .ignoringRequestMatchers(new AntPathRequestMatcher("/register", HttpMethod.POST.name()))
+//                    csrf -> csrf.disable()
+            );
             return httpSecurity.build();
         } catch (Exception e) {
             throw new RuntimeException(e);
