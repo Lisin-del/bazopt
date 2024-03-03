@@ -6,20 +6,11 @@ function redirectToLoginPage() {
     window.location.href = "login.html";
 }
 
-function getCSRFToken() {
-    try {
-        response = fetch("http://127.0.0.1:8080/csrf");
-        if (response.status === 200) {
-            json = response.json();
-            console.log("getCSRFToken function()" + json);
-            return json;
-        }
-    } catch(e) {
-        console.error(e);
-    }
+function redirectToHomePage() {
+    window.location.replace("http://127.0.0.1:8080/home.html");
 }
 
-function sendRegistrationData() {
+async function sendRegistrationData() {
     try {
         let formData = new FormData(document.getElementById("registrationFormContainer"));
         let firstNameVar = formData.get("Firstname");
@@ -34,57 +25,62 @@ function sendRegistrationData() {
             role: "user"
         }
         let userJson = JSON.stringify(jsonString);
-        fetch("http://127.0.0.1:8080/csrf")
-            .then(response => {
-                if (response.status === 200) {
-                    return response.json();
-                }
-                throw new Error("Unknown status: " + response.status);
-            }).then(csrf => {
-                if (csrf && csrf.headerName) {
-                    headers = {};
-                    headers[csrf.headerName] = csrf.token;
-                    headers['Content-Type'] = 'application/json';
-                    return fetch("http://127.0.0.1:8080/register", {
-                        method: "POST",    
-                        headers: headers,
-                        body: userJson
-                    });
-                } else {
-                    throw new Error("There are errors with CSRF token getting");
-                }
-                
-            });
+        headers = {};
+        headers['Content-Type'] = 'application/json';
+        registrationResponse = await fetch("http://127.0.0.1:8080/register", {
+            method: "POST",    
+            headers: headers,
+            body: userJson
+        });
     } catch (e) {
         console.error(e);
     }
     redirectToLoginPage();
 }
 
-function sendLoginData() {
+async function sendLoginData() {
     try {
         let formData = new FormData(document.getElementById("loginFormContainer"));
-        fetch("http://127.0.0.1:8080/csrf")
-                    .then(response => {
-                        if (response.status === 200) {
-                            return response.json();
-                        }
-                        throw new Error("Unknown status: " + response.status);
-                    }).then(csrf => {
-                        if (csrf && csrf.headerName) {
-                            headers = {};
-                            formData.append('_csrf', csrf.token);
-                            headers[csrf.headerName] = csrf.token;
-                            return fetch("http://127.0.0.1:8080/login-process", {
-                                method: "POST",
-                                body: formData,
-                                headers: headers
-                            });
-                        } else {
-                            throw new Error("There are errors with CSRF token getting");
-                        }
+        csrfResponse = await fetch("http://127.0.0.1:8080/csrf");
+        if (csrfResponse.status === 200) {
+            csrfJson = await csrfResponse.json();
+            headers = {};
+            headers[csrfJson.headerName] = csrfJson.token;
+            loginResponse = await fetch("http://127.0.0.1:8080/login/process", {
+                method: "POST",
+                body: formData,
+                headers: headers
+            });
+            redirectToHomePage();
+        } else {
+            throw new Error("There are errors with CSRF token getting");
+        }
 
-                    })
+        // fetch("http://127.0.0.1:8080/csrf")
+        //             .then(response => {
+        //                 if (response.status === 200) {
+        //                     return response.json();
+        //                 }
+        //                 throw new Error("Unknown status: " + response.status);
+        //             }).then(csrf => {
+        //                 if (csrf && csrf.headerName) {
+        //                     headers = {};
+        //                     //formData.append('_csrf', csrf.token);
+        //                     headers[csrf.headerName] = csrf.token;
+        //                     return fetch("http://127.0.0.1:8080/login/process", {
+        //                         method: "POST",
+        //                         body: formData,
+        //                         headers: headers
+        //                     });
+        //                 } else {
+        //                     throw new Error("There are errors with CSRF token getting");
+        //                 }
+
+        //             }).then(login => {
+        //                 console.log("Try to redirect to the home page...")
+        //                 // redirectToHomePage();
+        //             })
+    
     } catch (e) {
         console.error(e);
     }
@@ -95,3 +91,26 @@ function sendLoginData() {
 //            method: 'POST',
 //            body: formData
 //        });
+
+
+// fetch("http://127.0.0.1:8080/csrf")
+//             .then(response => {
+//                 if (response.status === 200) {
+//                     return response.json();
+//                 }
+//                 throw new Error("Unknown status: " + response.status);
+//             }).then(csrf => {
+//                 if (csrf && csrf.headerName) {
+//                     headers = {};
+//                     headers[csrf.headerName] = csrf.token;
+//                     headers['Content-Type'] = 'application/json';
+//                     return fetch("http://127.0.0.1:8080/register", {
+//                         method: "POST",    
+//                         headers: headers,
+//                         body: userJson
+//                     });
+//                 } else {
+//                     throw new Error("There are errors with CSRF token getting");
+//                 }
+                
+//             });

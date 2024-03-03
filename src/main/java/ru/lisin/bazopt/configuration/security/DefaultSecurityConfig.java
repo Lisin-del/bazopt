@@ -42,17 +42,17 @@ public class DefaultSecurityConfig {
                                     "/css/**",
                                     "/registration.html",
                                     "/register",
-                                    "/csrf"
+                                    "/csrf",
+                                    "/login/process"
                             ).permitAll()
                     ).authorizeHttpRequests(
                             authorizationHttpRequest -> authorizationHttpRequest.anyRequest().authenticated()
                     ).formLogin(
                             formLogin -> formLogin.loginPage("/login.html")
-                                    .loginProcessingUrl("/login-process")
+                                    .loginProcessingUrl("/login/process")
                                     .usernameParameter("email")
                                     .passwordParameter("password")
                                     .permitAll()
-//                        formLogin -> formLogin.permitAll()
                     ).logout(
                             logout -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                     .clearAuthentication(true)
@@ -66,7 +66,6 @@ public class DefaultSecurityConfig {
                             .csrfTokenRepository(httpSessionCsrfTokenRepository)
                             .sessionAuthenticationStrategy(new CsrfAuthenticationStrategy(httpSessionCsrfTokenRepository))
                             .ignoringRequestMatchers(new AntPathRequestMatcher("/register", HttpMethod.POST.name()))
-//                    csrf -> csrf.disable()
             );
             return httpSecurity.build();
         } catch (Exception e) {
