@@ -7,7 +7,7 @@ function redirectToLoginPage() {
 }
 
 function redirectToHomePage() {
-    window.location.replace("http://127.0.0.1:8080/home.html");
+    window.location.href = "home.html";
 }
 
 async function sendRegistrationData() {
