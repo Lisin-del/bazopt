@@ -17,3 +17,18 @@
 .registrationForm {
     margin-top: 10px;
 }
+
+#topMenuContainer {
+    margin-top: 20px;
+}
+
+#logo {
+    width: 115px;
+    height: 81.2px;
+}
+
+#logoColumn {
+    width: 116px;
+    height: 82px;
+    padding: 0px;
+}

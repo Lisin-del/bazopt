@@ -10,6 +10,10 @@ function redirectToHomePage() {
     window.location.href = "home.html";
 }
 
+function redirectToWholesaleBasePage() {
+    window.location = "http://127.0.0.1:8080/wholesaleBaseHome"
+}
+
 async function sendRegistrationData() {
     try {
         let formData = new FormData(document.getElementById("registrationFormContainer"));
@@ -51,7 +55,8 @@ async function sendLoginData() {
                 body: formData,
                 headers: headers
             });
-            redirectToHomePage();
+            // redirectToHomePage();
+            redirectToWholesaleBasePage();
         } else {
             throw new Error("There are errors with CSRF token getting");
         }
