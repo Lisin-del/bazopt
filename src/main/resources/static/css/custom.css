@@ -20,6 +20,7 @@
 
 #topMenuContainer {
     margin-top: 20px;
+    width: 1140px;
 }
 
 #logo {
@@ -30,5 +31,69 @@
 #logoColumn {
     width: 116px;
     height: 82px;
+    padding: 0px;
+}
+
+.colmy {
+    width: 65px;
+    height: 54px;
+    padding: 0px;
+}
+
+/* #mainPageSearchFieldContainer {
+    width: 800px;
+    height: 82px;
+    padding: 0px;
+    margin-left: 50px;
+    margin-right: 50px;
+} */
+
+#mainPageSearchFieldContainer {
+    padding-top: 15px;
+    padding-left: 80px;
+    padding-right: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#userAccountContainer {
+    margin-left: 25px;
+}
+
+#searchFieldMy {
+    width: 400px;
+    border-radius: 5px;
+    border-color: black;
+}
+
+#columnSearchContainer {
+    padding: 0px;
+    margin: 0px;
+    width: 600px;
+}
+
+.rowMy {
+    padding-right: 0px;
+    margin: 0px;
+}
+
+.topMargin {
+    margin-top: 50px;
+}
+
+.maingPageStorePhoto {
+    width: 200px;
+    height: 200px;
+    border-radius: 50px;
+}
+
+.wholesaleBaseListColumn0 {
+    width: 250px;
+    height: 250px;
+}
+
+.wholesaleBaseListColumn1 {
+    width: 650px;
+    height: 250px;
     padding: 0px;
 }
