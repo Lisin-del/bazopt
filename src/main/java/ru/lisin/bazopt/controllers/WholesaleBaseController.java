@@ -20,8 +20,8 @@ public class WholesaleBaseController {
 
     @GetMapping("/wholesaleBaseHome")
     public String getWholesaleBaseHomePage(Model model) {
-        model.addAttribute("values", List.of("hello1", "hello2", "hello3"));
         List<WholesaleBase> bases = wholesaleBaseService.getAllWholesaleBases();
+        model.addAttribute("bases", bases);
         return "WholesaleBasePage";
     }
 }

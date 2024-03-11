@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Bases</title>
-    <!-- <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="../css/custom.css"> -->
-    <link rel="stylesheet" href="../static/css/bootstrap.css">
-    <link rel="stylesheet" href="../static/css/custom.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/custom.css">
+    <!-- <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <link rel="stylesheet" href="../static/css/custom.css"> -->
 </head>
 
 <body>
@@ -15,8 +15,8 @@
         <div class="row align-items-start rowMy">
             <div class="colm" id="logoColumn">
                 <a href="http://127.0.0.1:8080/wholesaleBaseHome">
-                    <!-- <img src="../img/Logo1.png"/ id="logo"> -->
-                    <img src="../static/img/Logo1.png" id="logo">
+                    <img src="../img/Logo1.png"/ id="logo">
+                    <!-- <img src="../static/img/Logo1.png" id="logo"> -->
                 </a>
             </div>
             <div id="columnSearchContainer">
@@ -26,25 +26,25 @@
                 </div>                  
             </div>
             <div class="colmy" id="userAccountContainer">
-                <img src="../static/img/UserAccauntIcon.png">
-                <!-- <img src="../img/UserAccauntIcon.png"> -->
+                <!-- <img src="../static/img/UserAccauntIcon.png"> -->
+                <img src="../img/UserAccauntIcon.png">
             </div>
             <div class="colmy">
-                <img src="../static/img/BasketIcon.png">
-                <!-- <img src="../img/BasketIcon.png"> -->
+                <!-- <img src="../static/img/BasketIcon.png"> -->
+                <img src="../img/BasketIcon.png">
             </div>
             <div class="colmy" id="exitIconContainer">
-                <img src="../static/img/ExitIcon.png">
-                <!-- <img src="../img/ExitIcon.png"> -->
+                <!-- <img src="../static/img/ExitIcon.png"> -->
+                <img src="../img/ExitIcon.png">
             </div>
         </div>
-        <div class="row align-items-start rowMy topMargin" th:each="value: ${values}">
+        <div class="row align-items-start rowMy topMargin" th:each="base: ${bases}">
             <div class="wholesaleBaseListColumn0">
-                <img src="../static/img/Store0.jpg" class="maingPageStorePhoto">
+                <img th:src="@{../img/{image_name}.jpg(image_name=${base.getBasePhotoName()})}" class="maingPageStorePhoto">
             </div>
             <div class="wholesaleBaseListColumn1">
-                <h2>Here will be a title of a wolesale base</h2>
-                <p>Some short description about a company. Some short description about a company. Some short description about a company. Some short description about a company.</p>
+                <h3 th:text="${base.getName()}"></h3>
+                <p th:text="${base.getDescription()}"></p>
             </div>
         </div>
     </div>
