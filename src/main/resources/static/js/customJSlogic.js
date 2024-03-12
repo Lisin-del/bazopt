@@ -91,6 +91,11 @@ async function sendLoginData() {
     }
 }
 
+function openWholesaleBaseSeparatePage(wholesaleBaseName) {
+    url = "http://127.0.0.1:8080/wholesaleBase/".concat(wholesaleBaseName);
+    window.location.href = url;
+}
+
 //
 //        let response = await fetch("http://127.0.0.1:8080/login-process", {
 //            method: 'POST',

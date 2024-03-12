@@ -5,7 +5,7 @@ import lombok.Data;
 import org.hibernate.annotations.Type;
 
 @Entity
-@Table(name = "wholesale_base")
+@Table(name = "wholesale_base", uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
 @Data
 public class WholesaleBase {
     @Id

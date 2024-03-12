@@ -38,18 +38,10 @@
                 <img src="../img/ExitIcon.png">
             </div>
         </div>
-        <div class="row align-items-start rowMy topMargin" th:each="base: ${bases}">
-            <div class="wholesaleBaseListColumn0">
-                <img th:src="@{../img/{image_name}.jpg(image_name=${base.getBasePhotoName()})}" class="maingPageStorePhoto">
-            </div>
-            <div class="wholesaleBaseListColumn1">
-                <h3 th:text="${base.getName()}"></h3>
-                <p th:text="${base.getDescription()}"></p>
-                <button type="button" class="btn btn-dark" th:base-name="${base.getName()}" th:onclick="openWholesaleBaseSeparatePage(this.getAttribute('base-name'))">Перейти</button>
-            </div>
+        <div class="row align-items-start rowMy topMargin">
+            <h3 th:text="${name}"></h3>
         </div>
     </div>
-    <script src="../js/customJSlogic.js"></script>
 </body>
 
 </html>
