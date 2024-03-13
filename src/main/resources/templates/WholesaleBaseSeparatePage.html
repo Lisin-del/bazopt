@@ -39,7 +39,10 @@
             </div>
         </div>
         <div class="row align-items-start rowMy topMargin">
-            <h3 th:text="${name}"></h3>
+            <h3 th:text="${base.getName()}"></h3>
+            <p th:text="${base.getDescription()}"></p>
+            <img th:src="@{../img/{image_name}.jpg(image_name=${base.getBasePhotoName()})}" class="separatePageStorePhoto">
+            <p th:text="${base.getAddress()}"></p>
         </div>
     </div>
 </body>

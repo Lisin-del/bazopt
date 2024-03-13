@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface WholesaleBaseService {
     List<WholesaleBase> getAllWholesaleBases();
+
+    WholesaleBase getWholesaleBaseByName(String name);
 }

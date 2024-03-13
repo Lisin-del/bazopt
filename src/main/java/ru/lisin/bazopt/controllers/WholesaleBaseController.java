@@ -30,7 +30,8 @@ public class WholesaleBaseController {
 
     @GetMapping("/wholesaleBase/{name}")
     public String getWholesaleBaseSeparatePage(Model model, @PathVariable(name = "name") String name) {
-        model.addAttribute("name", name);
+        WholesaleBase base = wholesaleBaseService.getWholesaleBaseByName(name);
+        model.addAttribute("base", base);
         return "WholesaleBaseSeparatePage";
     }
 }
