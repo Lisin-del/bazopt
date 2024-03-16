@@ -18,6 +18,4 @@ public class WholesaleBase {
     private String basePhotoName;
     private String phoneNumber;
     private String bankData;
-    // update db
-    // update sql scripts to fill the db
 }

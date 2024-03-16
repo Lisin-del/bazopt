@@ -103,7 +103,26 @@
     border-radius: 50px;
     width: 600px;
     height: 500px;
-    margin-left: auto;
+    /* margin-left: auto;
     margin-right: auto;
-    display: block;
+    display: block; */
+}
+
+.separatePageImgCol {
+    width: 601px;
+    height: 501px;
+}
+
+.separatePageTextCol {
+    width: 400px;
+    height: 501px;
+    padding-top: 180px;
+}
+
+.textAlignLeft {
+    text-align: left;
+}
+
+.textAlignCenter {
+    text-align: center;
 }

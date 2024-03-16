@@ -38,12 +38,19 @@
                 <img src="../img/ExitIcon.png">
             </div>
         </div>
-        <div class="row align-items-start rowMy topMargin">
+        <div class="row align-items-start rowMy topMargin textAlignLeft">
             <h3 th:text="${base.getName()}"></h3>
             <p th:text="${base.getDescription()}"></p>
-            <img th:src="@{../img/{image_name}.jpg(image_name=${base.getBasePhotoName()})}" class="separatePageStorePhoto">
-            <p th:text="${base.getAddress()}"></p>
+            <div class="separatePageImgCol">
+                <img th:src="@{../img/{image_name}.jpg(image_name=${base.getBasePhotoName()})}" class="separatePageStorePhoto">
+            </div>
+            <div class="separatePageTextCol textAlignCenter">
+                <h5 th:text="${base.getAddress()}"></h5>
+                <h5 th:text="${base.getBankData()}"></h5>
+                <h5 th:text="${base.getPhoneNumber()}"></h5>
+            </div>
         </div>
+        
     </div>
 </body>
 
