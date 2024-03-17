@@ -96,6 +96,12 @@ function openWholesaleBaseSeparatePage(wholesaleBaseName) {
     window.location.href = url;
 }
 
+function searchWholesaleBase() {
+    userText = document.getElementById("searchFieldMy").value;
+    url = "http://127.0.0.1:8080/wholesaleBaseHome/filter?userSearch=".concat(userText);
+    window.location.href = url;
+}
+
 //
 //        let response = await fetch("http://127.0.0.1:8080/login-process", {
 //            method: 'POST',

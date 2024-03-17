@@ -21,8 +21,8 @@
             </div>
             <div id="columnSearchContainer">
                 <div class="input-group mb-3" id="mainPageSearchFieldContainer">
-                    <input type="text" id="searchFieldMy" class="form-controlmy" placeholder="Wholesale base name...">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+                    <!-- <input type="text" id="searchFieldMy" class="form-controlmy" placeholder="Wholesale base name...">
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button> -->
                 </div>                  
             </div>
             <div class="colmy" id="userAccountContainer">
@@ -45,9 +45,9 @@
                 <img th:src="@{../img/{image_name}.jpg(image_name=${base.getBasePhotoName()})}" class="separatePageStorePhoto">
             </div>
             <div class="separatePageTextCol textAlignCenter">
-                <h5 th:text="${base.getAddress()}"></h5>
-                <h5 th:text="${base.getBankData()}"></h5>
-                <h5 th:text="${base.getPhoneNumber()}"></h5>
+                <p th:text="${base.getAddress()}"></p>
+                <p th:text="${base.getBankData()}"></p>
+                <p th:text="${base.getPhoneNumber()}"></p>
             </div>
         </div>
         

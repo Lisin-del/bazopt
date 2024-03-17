@@ -8,4 +8,6 @@ public interface WholesaleBaseService {
     List<WholesaleBase> getAllWholesaleBases();
 
     WholesaleBase getWholesaleBaseByName(String name);
+
+    List<WholesaleBase> getAllWholesaleBasesByUserSearchText(String userSearchText);
 }

@@ -26,4 +26,9 @@ public class WholesaleBaseServiceImpl implements WholesaleBaseService {
     public WholesaleBase getWholesaleBaseByName(String name) {
         return repository.getWholesaleBaseByName(name);
     }
+
+    @Override
+    public List<WholesaleBase> getAllWholesaleBasesByUserSearchText(String userSearchText) {
+        return repository.getAllNamesByUserSearch(userSearchText.toLowerCase());
+    }
 }
