@@ -115,7 +115,7 @@
 
 .separatePageTextCol {
     width: 300px;
-    height: 501px;
+    height: 350px;
     padding-top: 125px;
     padding-left: 35px;
 }
@@ -126,4 +126,9 @@
 
 .textAlignCenter {
     text-align: center;
+}
+
+.productCol {
+    width: 400px;
+    height: 300px;
 }
