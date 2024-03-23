@@ -6,43 +6,51 @@
     <title>Bases</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/custom.css">
-    <!-- <link rel="stylesheet" href="../static/css/bootstrap.css">
-    <link rel="stylesheet" href="../static/css/custom.css"> -->
+    <link rel="stylesheet" href="../css/headers.css">
 </head>
 
 <body>
-    <div class="container text-center" id="topMenuContainer">
-        <div class="row align-items-start rowMy">
-            <div class="colm" id="logoColumn">
+    <header class="p-3 mb-3 border-bottom">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a href="http://127.0.0.1:8080/wholesaleBaseHome">
-                    <img src="../img/Logo1.png"/ id="logo">
-                    <!-- <img src="../static/img/Logo1.png" id="logo"> -->
+                    <img src="../img/Logo1.png" / id="logo">
                 </a>
-            </div>
-            <div id="columnSearchContainer">
-                <div class="input-group mb-3" id="mainPageSearchFieldContainer">
-                    <!-- <input type="text" id="searchFieldMy" class="form-controlmy" placeholder="Wholesale base name...">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button> -->
-                </div>                  
-            </div>
-            <div class="colmy" id="userAccountContainer">
-                <!-- <img src="../static/img/UserAccauntIcon.png"> -->
-                <img src="../img/UserAccauntIcon.png">
-            </div>
-            <div class="colmy">
-                <!-- <img src="../static/img/BasketIcon.png"> -->
-                <img src="../img/BasketIcon.png">
-            </div>
-            <div class="colmy" id="exitIconContainer">
-                <!-- <img src="../static/img/ExitIcon.png"> -->
-                <img src="../img/ExitIcon.png">
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="#" class="nav-link px-2 link-secondary">Продукты</a></li>
+                    <li><a href="#" class="nav-link px-2 link-body-emphasis">Корзина</a></li>
+                    <li><a href="#" class="nav-link px-2 link-body-emphasis">Доставка</a></li>
+                </ul>
+
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                </form>
+
+                <div class="dropdown text-end">
+                    <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu text-small">
+                        <li><a class="dropdown-item" href="#">Настройки</a></li>
+                        <li><a class="dropdown-item" href="#">Профиль</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" id="logoutId" onclick="logOut()" "#">Выйти</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
+    </header>
+    <div class="container text-center" id="topMenuContainer">
         <div class="row align-items-start rowMy topMargin textAlignLeft">
             <h3 th:text="${base.getName()}"></h3>
             <p th:text="${base.getDescription()}"></p>
             <div class="separatePageImgCol">
-                <img th:src="@{../img/{image_name}.jpg(image_name=${base.getBasePhotoName()})}" class="separatePageStorePhoto">
+                <img th:src="@{../img/{image_name}.jpg(image_name=${base.getBasePhotoName()})}"
+                    class="separatePageStorePhoto">
             </div>
             <div class="separatePageTextCol textAlignCenter">
                 <p th:text="${base.getAddress()}"></p>
@@ -50,8 +58,10 @@
                 <p th:text="${base.getPhoneNumber()}"></p>
             </div>
         </div>
-        <div class="row align-items-start rowMy topMargin">
+        <div class="row align-items-start rowMy topMargin textAlignLeft">
+            <h3>Каталог товаров</h3>
             <div class="productCol">
+                <!-- <img src="../img/FirBoard.png"> -->
                 <p>Please, check our products</p>
             </div>
             <div class="productCol">
@@ -59,6 +69,8 @@
             </div>
         </div>
     </div>
+    <script src="../js/customJSlogic.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

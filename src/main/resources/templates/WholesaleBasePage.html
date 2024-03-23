@@ -6,50 +6,86 @@
     <title>Bases</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/custom.css">
-    <!-- <link rel="stylesheet" href="../static/css/bootstrap.css">
-    <link rel="stylesheet" href="../static/css/custom.css"> -->
+    <link rel="stylesheet" href="../css/headers.css">
+    <link rel="stylesheet" href="../css/heroes.css">
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <div class="container text-center" id="topMenuContainer">
-        <div class="row align-items-start rowMy">
-            <div class="colm" id="logoColumn">
+    <header class="p-3 mb-3 border-bottom">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a href="http://127.0.0.1:8080/wholesaleBaseHome">
-                    <img src="../img/Logo1.png"/ id="logo">
-                    <!-- <img src="../static/img/Logo1.png" id="logo"> -->
+                    <img src="../img/Logo1.png" / id="logo">
                 </a>
-            </div>
-            <div id="columnSearchContainer">
-                <div class="input-group mb-3" id="mainPageSearchFieldContainer">
-                    <input type="text" id="searchFieldMy" class="form-controlmy" placeholder="Wholesale base name...">
-                    <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="searchWholesaleBase()">Search</button>
-                </div>                  
-            </div>
-            <div class="colmy" id="userAccountContainer">
-                <!-- <img src="../static/img/UserAccauntIcon.png"> -->
-                <img src="../img/UserAccauntIcon.png">
-            </div>
-            <div class="colmy">
-                <!-- <img src="../static/img/BasketIcon.png"> -->
-                <img src="../img/BasketIcon.png">
-            </div>
-            <div class="colmy" id="exitIconContainer">
-                <!-- <img src="../static/img/ExitIcon.png"> -->
-                <img src="../img/ExitIcon.png">
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="#" class="nav-link px-2 link-secondary">Продукты</a></li>
+                    <li><a href="#" class="nav-link px-2 link-body-emphasis">Корзина</a></li>
+                    <li><a href="#" class="nav-link px-2 link-body-emphasis">Доставка</a></li>
+                </ul>
+
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                </form>
+
+                <div class="dropdown text-end">
+                    <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu text-small">
+                        <li><a class="dropdown-item" href="#">Настройки</a></li>
+                        <li><a class="dropdown-item" href="#">Профиль</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" id="logoutId" onclick="logOut()" "#">Выйти</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
+    </header>
+    <!-- <div class="container text-center" id="topMenuContainer">
         <div class="row align-items-start rowMy topMargin" th:each="base: ${bases}">
             <div class="wholesaleBaseListColumn0">
-                <img th:src="@{../img/{image_name}.jpg(image_name=${base.getBasePhotoName()})}" class="maingPageStorePhoto">
+                <img th:src="@{../img/{image_name}.jpg(image_name=${base.getBasePhotoName()})}"
+                    class="maingPageStorePhoto">
             </div>
             <div class="wholesaleBaseListColumn1">
                 <h3 th:text="${base.getName()}"></h3>
                 <p th:text="${base.getDescription()}"></p>
-                <button type="button" class="btn btn-dark" th:base-name="${base.getName()}" th:onclick="openWholesaleBaseSeparatePage(this.getAttribute('base-name'))">Перейти</button>
+                <button type="button" class="btn btn-dark" th:base-name="${base.getName()}"
+                    th:onclick="openWholesaleBaseSeparatePage(this.getAttribute('base-name'))">Перейти</button>
+            </div>
+        </div>
+    </div> -->
+
+    <div th:each="base: ${bases}">
+        <div class="b-example-divider"></div>
+
+        <div class="px-4 pt-5 my-5 text-center border-bottom">
+            <h3 class="display-4 text-body-emphasis" th:text="${base.getName()}"></h3>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4" th:text="${base.getDescription()}"></p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+                    <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3 btn-dark"
+                        th:base-name="${base.getName()}"
+                        th:onclick="openWholesaleBaseSeparatePage(this.getAttribute('base-name'))">Перейти</button>
+                </div>
+            </div>
+            <div class="overflow-hidden" style="max-height: 30vh;">
+                <div class="container px-5">
+                    <img th:src="@{../img/{image_name}.jpg(image_name=${base.getBasePhotoName()})}"
+                        class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500"
+                        loading="lazy">
+                </div>
             </div>
         </div>
     </div>
+
     <script src="../js/customJSlogic.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
