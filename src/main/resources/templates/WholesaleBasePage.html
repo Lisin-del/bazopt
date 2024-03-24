@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/custom.css">
     <link rel="stylesheet" href="../css/headers.css">
     <link rel="stylesheet" href="../css/heroes.css">
-    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
 </head>
 
 <body>
@@ -25,14 +25,17 @@
                     <li><a href="#" class="nav-link px-2 link-body-emphasis">Доставка</a></li>
                 </ul>
 
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+                    onclick="searchWholesaleBase()">Search</button>
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" id="searchForm">
+                    <input type="text" class="form-control" placeholder="Search..." aria-label="Search"
+                        name="searchField">
                 </form>
 
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                        <img src="#" alt="mdo" width="32" height="32" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small">
                         <li><a class="dropdown-item" href="#">Настройки</a></li>
@@ -46,42 +49,26 @@
             </div>
         </div>
     </header>
-    <!-- <div class="container text-center" id="topMenuContainer">
-        <div class="row align-items-start rowMy topMargin" th:each="base: ${bases}">
-            <div class="wholesaleBaseListColumn0">
-                <img th:src="@{../img/{image_name}.jpg(image_name=${base.getBasePhotoName()})}"
-                    class="maingPageStorePhoto">
-            </div>
-            <div class="wholesaleBaseListColumn1">
-                <h3 th:text="${base.getName()}"></h3>
-                <p th:text="${base.getDescription()}"></p>
-                <button type="button" class="btn btn-dark" th:base-name="${base.getName()}"
-                    th:onclick="openWholesaleBaseSeparatePage(this.getAttribute('base-name'))">Перейти</button>
-            </div>
-        </div>
-    </div> -->
-
+    
     <div th:each="base: ${bases}">
-        <div class="b-example-divider"></div>
-
-        <div class="px-4 pt-5 my-5 text-center border-bottom">
-            <h3 class="display-4 text-body-emphasis" th:text="${base.getName()}"></h3>
-            <div class="col-lg-6 mx-auto">
-                <p class="lead mb-4" th:text="${base.getDescription()}"></p>
-                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-                    <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3 btn-dark"
+        <div class="container col-xxl-8 px-4 py-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-10 col-sm-8 col-lg-6">
+                    <img th:src="@{../img/{image_name}.jpg(image_name=${base.getBasePhotoName()})}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"
+                        width="700" height="500" loading="lazy">
+                </div>
+                <div class="col-lg-6">
+                    <h1 class="display-5 text-body-emphasis lh-1 mb-3" th:text="${base.getName()}"></h1>
+                    <p class="lead" th:text="${base.getDescription()}"></p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3 btn-dark"
                         th:base-name="${base.getName()}"
                         th:onclick="openWholesaleBaseSeparatePage(this.getAttribute('base-name'))">Перейти</button>
-                </div>
-            </div>
-            <div class="overflow-hidden" style="max-height: 30vh;">
-                <div class="container px-5">
-                    <img th:src="@{../img/{image_name}.jpg(image_name=${base.getBasePhotoName()})}"
-                        class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500"
-                        loading="lazy">
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="b-example-divider"></div>
     </div>
 
     <script src="../js/customJSlogic.js"></script>

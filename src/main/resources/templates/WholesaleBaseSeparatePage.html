@@ -23,14 +23,17 @@
                     <li><a href="#" class="nav-link px-2 link-body-emphasis">Доставка</a></li>
                 </ul>
 
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+                    onclick="searchWholesaleBase()">Search</button>
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" id="searchForm">
+                    <input type="text" class="form-control" placeholder="Search..." aria-label="Search"
+                        name="searchField">
                 </form>
 
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                        <img src="#" alt="mdo" width="32" height="32" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small">
                         <li><a class="dropdown-item" href="#">Настройки</a></li>
@@ -44,31 +47,29 @@
             </div>
         </div>
     </header>
+    
     <div class="container text-center" id="topMenuContainer">
-        <div class="row align-items-start rowMy topMargin textAlignLeft">
-            <h3 th:text="${base.getName()}"></h3>
-            <p th:text="${base.getDescription()}"></p>
-            <div class="separatePageImgCol">
-                <img th:src="@{../img/{image_name}.jpg(image_name=${base.getBasePhotoName()})}"
-                    class="separatePageStorePhoto">
+        <div class="row align-items-md-stretch">
+            <div class="col-md-6">
+                <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+                    <h2 th:text="${base.getName()}"></h2>
+                    <p th:text="${base.getDescription()}"></p>
+                    <button class="btn btn-outline-secondary" type="button">Товары</button>
+                </div>
             </div>
-            <div class="separatePageTextCol textAlignCenter">
-                <p th:text="${base.getAddress()}"></p>
-                <p th:text="${base.getBankData()}"></p>
-                <p th:text="${base.getPhoneNumber()}"></p>
-            </div>
-        </div>
-        <div class="row align-items-start rowMy topMargin textAlignLeft">
-            <h3>Каталог товаров</h3>
-            <div class="productCol">
-                <!-- <img src="../img/FirBoard.png"> -->
-                <p>Please, check our products</p>
-            </div>
-            <div class="productCol">
-                <p>Please, check our products</p>
+            <div class="col-md-6">
+                <div class="h-100 p-5 text-bg-dark rounded-3">
+                    <h2>Контактная информация</h2>
+                    <ul class="list-group list-group-flush">
+                        <li th:text="${base.getBankData()}"></li>
+                        <li th:text="${base.getAddress()}"></li>
+                        <li th:text="${base.getPhoneNumber()}"></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
+
     <script src="../js/customJSlogic.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
 </body>
