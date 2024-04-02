@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Bases</title>
+    <title>Products</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/custom.css">
     <link rel="stylesheet" href="../css/headers.css">
@@ -49,27 +49,59 @@
             </div>
         </div>
     </header>
-    
+    <div class="container text-center" id="topMenuContainer">
+
+        <div class="dropdown">
+            <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+            <label class="btn btn-outline-primary" for="btncheck1">Лучшая цена</label>
+
+
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">Оптовая база</button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">Производитель</button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">Количество</button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+        </div>
+    </div>
+
     <div th:each="base: ${bases}">
         <div class="container col-xxl-8 px-4 py-5">
             <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                <div class="col-10 col-sm-8 col-lg-6">
-                    <img th:src="@{../img/{image_name}.jpg(image_name=${base.getBasePhotoName()})}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"
-                        width="700" height="500" loading="lazy">
-                </div>
                 <div class="col-lg-6">
                     <h1 class="text-body-emphasis lh-1 mb-3" th:text="${base.getName()}"></h1>
                     <p class="lead" th:text="${base.getDescription()}"></p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                        <button type="button" class="btn btn-dark"
-                        th:base-name="${base.getName()}"
-                        th:onclick="openWholesaleBaseSeparatePage(this.getAttribute('base-name'))">Перейти</button>
+                        <button type="button" class="btn btn-dark" th:base-name="${base.getName()}"
+                            th:onclick="openWholesaleBaseSeparatePage(this.getAttribute('base-name'))">Перейти</button>
                     </div>
+                </div>
+                <div class="col-10 col-sm-8 col-lg-6">
+                    <img th:src="@{../img/{image_name}.jpg(image_name=${base.getBasePhotoName()})}"
+                        class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500"
+                        loading="lazy">
                 </div>
             </div>
         </div>
-        <div class="b-example-divider"></div>
     </div>
+
 
     <script src="../js/customJSlogic.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
