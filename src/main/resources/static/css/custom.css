@@ -133,3 +133,29 @@
     width: 400px;
     height: 300px;
 }
+
+.productPhotoRadius {
+    border-radius: 10px;
+}
+
+.productPhotoColSize {
+    width: 180px;
+    height: 130px;
+    padding: 0px;
+    flex: none;
+}
+
+.productRawTopMargin {
+    margin-top: 20px;
+}
+
+.productDivider {
+    height: 20px;
+}
+
+.productRaw {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+

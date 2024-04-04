@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <title>Products</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="../css/custom.css">
     <link rel="stylesheet" href="../css/headers.css">
     <link rel="stylesheet" href="../css/heroes.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/custom.css">
 </head>
 
 <body>
@@ -82,25 +82,29 @@
         </div>
     </div>
 
-    <div th:each="base: ${bases}">
-        <div class="container col-xxl-8 px-4 py-5">
-            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                <div class="col-lg-6">
-                    <h1 class="text-body-emphasis lh-1 mb-3" th:text="${base.getName()}"></h1>
-                    <p class="lead" th:text="${base.getDescription()}"></p>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                        <button type="button" class="btn btn-dark" th:base-name="${base.getName()}"
-                            th:onclick="openWholesaleBaseSeparatePage(this.getAttribute('base-name'))">Перейти</button>
-                    </div>
+
+    <div class="container text-center productRawTopMargin">
+        <div th:each="base: ${bases}">
+            <div class="row productRaw">
+                <div class="col productPhotoColSize">
+                    <img th:src="@{../img/{image_name}.jpg(image_name=${base.getBasePhotoName()})}" width="170" height="120"
+                        loading="lazy" class="productPhotoRadius">
                 </div>
-                <div class="col-10 col-sm-8 col-lg-6">
-                    <img th:src="@{../img/{image_name}.jpg(image_name=${base.getBasePhotoName()})}"
-                        class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500"
-                        loading="lazy">
+                <div class="col textAlignLeft">
+                    <h3>Название товара</h3>
+                    <p>Кол-во: 100</p>
+                    <p>Россия</p>
+                </div>
+                <div class="col">
+                    <h6>Оптовая база</h6>
+                </div>
+                <div class="col">
+                    <p><strong>1200 руб.</strong></p>
                 </div>
             </div>
         </div>
     </div>
+
 
 
     <script src="../js/customJSlogic.js"></script>
