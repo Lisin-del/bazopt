@@ -19,11 +19,12 @@ public class Product {
     private String description;
     private float price;
     private String photoName;
-    private String producer;
+    private String producer; //россия, германия, италия, швеция
     @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
     private ProductTechnicalCharacteristic characteristic;
     @ManyToOne(cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private WholesaleBase base;
+    private long quantity;
 }
 
