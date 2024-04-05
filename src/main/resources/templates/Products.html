@@ -20,7 +20,7 @@
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 link-body-emphasis">Продукты</a></li>
+                    <li><a href="#" class="nav-link px-2 link-body-emphasis" onclick="allProducts()">Продукты</a></li>
                     <li><a href="#" class="nav-link px-2 link-body-emphasis">Корзина</a></li>
                     <li><a href="#" class="nav-link px-2 link-body-emphasis">Доставка</a></li>
                 </ul>
@@ -50,11 +50,45 @@
         </div>
     </header>
     <div class="container text-center" id="topMenuContainer">
+        <div class="row">
+            <div class="col">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Россия</option>
+                    <option value="1">Германия</option>
+                    <option value="2">Италия</option>
+                    <option value="3">Швеция</option>
+                </select>
+            </div>
+            <div class="col">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Рос-Строй-Опт</option>
+                    <option value="1">Строй-Материалы-Опт</option>
+                    <option value="2">Строй-Мастер-Опт</option>
+                    <option value="3">Опт-Енот</option>
+                    <option value="4">Рем-Строй-Опт</option>
+                </select>
+            </div>
+            <div class="col">
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon3">Цена(не больше)</span>
+                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
+                </div>
+            </div>
+            <div class="col">
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon3">Кол-во</span>
+                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
+                </div>
+            </div>
+            <div class="col">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+                    onclick="">Search</button>
+            </div>
+        </div>
 
         <div class="dropdown">
             <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
             <label class="btn btn-outline-primary" for="btncheck1">Лучшая цена</label>
-
 
             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                 aria-expanded="false">Оптовая база</button>
@@ -83,23 +117,23 @@
     </div>
 
 
-    <div class="container text-center productRawTopMargin">
-        <div th:each="base: ${bases}">
-            <div class="row productRaw">
+    <div class="container text-center productRowTopMargin">
+        <div th:each="product: ${products}">
+            <div class="row productRow">
                 <div class="col productPhotoColSize">
-                    <img th:src="@{../img/{image_name}.jpg(image_name=${base.getBasePhotoName()})}" width="170" height="120"
+                    <img th:src="@{../img/{image_name}(image_name=${product.getPhotoName()})}" width="170" height="120"
                         loading="lazy" class="productPhotoRadius">
                 </div>
                 <div class="col textAlignLeft">
-                    <h3>Название товара</h3>
-                    <p>Кол-во: 100</p>
-                    <p>Россия</p>
+                    <h5 th:text="${product.getName()}"></h5>
+                    <p th:text="'Количество: ' + ${product.getQuantity()}"></p>
+                    <p th:text="'Производитель: ' + ${product.getProducer()}"></p>
                 </div>
                 <div class="col">
-                    <h6>Оптовая база</h6>
+                    <h6 th:text="${product.getBase().getName()}"></h6>
                 </div>
                 <div class="col">
-                    <p><strong>1200 руб.</strong></p>
+                    <p><strong th:text="${product.getPrice()} + 'руб.'"></strong></p>
                 </div>
             </div>
         </div>

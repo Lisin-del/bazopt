@@ -145,7 +145,7 @@
     flex: none;
 }
 
-.productRawTopMargin {
+.productRowTopMargin {
     margin-top: 20px;
 }
 
@@ -153,9 +153,11 @@
     height: 20px;
 }
 
-.productRaw {
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+.productRow {
+    height: 140px;
+    padding: 10px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     margin-bottom: 20px;
     border-radius: 10px;
+    margin-top: 0px;
 }
-

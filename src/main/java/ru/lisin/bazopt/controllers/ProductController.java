@@ -5,23 +5,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.lisin.bazopt.model.Product;
-import ru.lisin.bazopt.model.ProductTechnicalCharacteristic;
-import ru.lisin.bazopt.model.WholesaleBase;
-import ru.lisin.bazopt.repository.ProductRepository;
-import ru.lisin.bazopt.services.WholesaleBaseService;
+import ru.lisin.bazopt.services.ProductService;
 
-import java.util.*;
+import java.util.List;
 
 @Controller
 public class ProductController {
+    private final ProductService productService;
+
     @Autowired
-    private WholesaleBaseService wholesaleBaseService;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping("/allProducts")
     public String getAllProducts(Model model) {
-        // todo: this code is only for tests
-        List<WholesaleBase> bases = wholesaleBaseService.getAllWholesaleBases();
-        model.addAttribute("bases", bases);
+        List<Product> products = productService.getAllProducts();
+        model.addAttribute("products", products);
         return "Products";
     }
 }
