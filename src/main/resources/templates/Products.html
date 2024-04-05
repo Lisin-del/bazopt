@@ -53,66 +53,32 @@
         <div class="row">
             <div class="col">
                 <select class="form-select" aria-label="Default select example">
-                    <option selected>Россия</option>
-                    <option value="1">Германия</option>
-                    <option value="2">Италия</option>
-                    <option value="3">Швеция</option>
+                    <option selected>---</option>
+                    <option value="1">Россия</option>
+                    <option value="2">Германия</option>
+                    <option value="3">Италия</option>
+                    <option value="4">Швеция</option>
                 </select>
             </div>
             <div class="col">
                 <select class="form-select" aria-label="Default select example">
-                    <option selected>Рос-Строй-Опт</option>
+                    <option selected>---</option>
                     <option value="1">Строй-Материалы-Опт</option>
                     <option value="2">Строй-Мастер-Опт</option>
                     <option value="3">Опт-Енот</option>
                     <option value="4">Рем-Строй-Опт</option>
+                    <option value="5">Рос-Строй-Опт</option>
                 </select>
             </div>
-            <div class="col">
-                <div class="input-group">
-                    <span class="input-group-text" id="basic-addon3">Цена(не больше)</span>
-                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
-                </div>
+            <div class="col input-group">
+                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4" placeholder="Цена">
+            </div>
+            <div class="col input-group">
+                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4" placeholder="Кол-во">
             </div>
             <div class="col">
-                <div class="input-group">
-                    <span class="input-group-text" id="basic-addon3">Кол-во</span>
-                    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
-                </div>
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="">Применить</button>
             </div>
-            <div class="col">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2"
-                    onclick="">Search</button>
-            </div>
-        </div>
-
-        <div class="dropdown">
-            <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btncheck1">Лучшая цена</label>
-
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">Оптовая база</button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">Производитель</button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">Количество</button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
         </div>
     </div>
 
