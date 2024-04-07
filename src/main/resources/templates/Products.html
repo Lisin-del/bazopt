@@ -52,7 +52,7 @@
     <div class="container text-center" id="topMenuContainer">
         <div class="row">
             <div class="col">
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" id="countrySelector">
                     <option selected>---</option>
                     <option value="1">Россия</option>
                     <option value="2">Германия</option>
@@ -61,7 +61,7 @@
                 </select>
             </div>
             <div class="col">
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" id="baseSelector">
                     <option selected>---</option>
                     <option value="1">Строй-Материалы-Опт</option>
                     <option value="2">Строй-Мастер-Опт</option>
@@ -71,13 +71,13 @@
                 </select>
             </div>
             <div class="col input-group">
-                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4" placeholder="Цена">
+                <input type="text" class="form-control" id="priceFilter" aria-describedby="basic-addon3 basic-addon4" placeholder="Цена">
             </div>
             <div class="col input-group">
-                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4" placeholder="Кол-во">
+                <input type="text" class="form-control" id="quantityFilter" aria-describedby="basic-addon3 basic-addon4" placeholder="Кол-во">
             </div>
             <div class="col">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="">Применить</button>
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="getProductsWithFilter()">Применить</button>
             </div>
         </div>
     </div>
@@ -99,7 +99,7 @@
                     <h6 th:text="${product.getBase().getName()}"></h6>
                 </div>
                 <div class="col">
-                    <p><strong th:text="${product.getPrice()} + 'руб.'"></strong></p>
+                    <p><strong th:text="${product.getPrice()} + ' руб.'"></strong></p>
                 </div>
             </div>
         </div>
