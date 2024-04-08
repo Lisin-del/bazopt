@@ -22,6 +22,4 @@ public class WholesaleBase {
     private String basePhotoName;
     private String phoneNumber;
     private String bankData;
-    @OneToMany(mappedBy = "base")
-    private List<Product> products;
 }

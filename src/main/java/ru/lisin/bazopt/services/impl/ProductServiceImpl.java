@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.lisin.bazopt.model.Product;
 import ru.lisin.bazopt.model.ProductFilter;
 import ru.lisin.bazopt.model.WholesaleBase;
+import ru.lisin.bazopt.repository.CustomProductRepository;
 import ru.lisin.bazopt.repository.ProductRepository;
 import ru.lisin.bazopt.repository.WholesaleBaseRepository;
 import ru.lisin.bazopt.services.ProductService;
@@ -16,11 +17,17 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final WholesaleBaseRepository baseRepository;
+    private final CustomProductRepository customProductRepository;
 
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository, WholesaleBaseRepository baseRepository) {
+    public ProductServiceImpl(
+            ProductRepository productRepository,
+            WholesaleBaseRepository baseRepository,
+            CustomProductRepository customProductRepository
+    ) {
         this.productRepository = productRepository;
         this.baseRepository = baseRepository;
+        this.customProductRepository = customProductRepository;
     }
 
     @Override
@@ -30,19 +37,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAllProductsWithFilter(ProductFilter filter) {
-        StringBuilder queryBuilder = new StringBuilder();
-        if (filter.getBase() != null && !filter.getBase().isEmpty()) {
-            WholesaleBase base = baseRepository.getWholesaleBaseByName(filter.getBase());
-            queryBuilder.append(" p.base_id = ").append(base.getId());
-        }
-        if (filter.getProducer() != null && !filter.getProducer().isEmpty()) {
-            int index = queryBuilder.lastIndexOf("AND");
-            if (index == -1) {
-                queryBuilder.append(" AND");
-            }
-            queryBuilder.append(" LOWER(p.producer) = ").append("'").append(filter.getProducer().toLowerCase()).append("'");
-        }
-        productRepository.getProductsWithFilter(queryBuilder.toString());
-        return null;
+        return customProductRepository.getProductsWithFilter(filter);
     }
 }

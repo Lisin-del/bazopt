@@ -115,38 +115,21 @@ function searchWholesaleBase() {
 async function getProductsWithFilter() {
     countrySelector = document.getElementById("countrySelector");
     countrySelectorValue = countrySelector.options[countrySelector.selectedIndex].text;
-    console.log(countrySelectorValue);
+    
     baseSelector = document.getElementById("baseSelector");
     baseSelectorValue = baseSelector.options[baseSelector.selectedIndex].text;
-    console.log(baseSelectorValue);
-    try {
-        csrfResponse = await fetch("http://127.0.0.1:8080/csrf");
-        if (csrfResponse.status === 200) {
-            console.log("Token has been got");
-            csrfJson = await csrfResponse.json();
-            headers = {};
-            headers[csrfJson.headerName] = csrfJson.token;
-            headers['Content-Type'] = 'application/json';
-            let bodyString = {
-                producer: countrySelectorValue,
-                base: baseSelectorValue,
-                price: 0,
-                quantity: 0
-            }
-            let jsonString = JSON.stringify(bodyString);
-            products = await fetch("http://127.0.0.1:8080/allProducts/filter", {
-                method: "POST",
-                body: jsonString,
-                headers: headers
-            });
-            // redirectToHomePage();
-            // redirectToWholesaleBasePage();
-        } else {
-            throw new Error("There are errors with CSRF token getting");
-        }
-    } catch (e) {
-        console.error(e);
-    }
+    
+    priceValue = Number(document.getElementById("priceFilter").value);
+    
+    quantityValue = Number(document.getElementById("quantityFilter").value);
+
+    url = "http://127.0.0.1:8080/allProducts/filter?country="
+        .concat(countrySelectorValue).concat("&")
+        .concat("base=").concat(baseSelectorValue).concat("&")
+        .concat("price=").concat(priceValue).concat("&")
+        .concat("quantity=").concat(quantityValue)
+
+    window.location.href = url;
 }
 //
 //        let response = await fetch("http://127.0.0.1:8080/login-process", {
