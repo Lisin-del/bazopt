@@ -14,11 +14,14 @@ public class ProductTechnicalCharacteristic {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
+    @Column(length = 300)
     private String name;
     @Column(length = 500)
     private String materialType;
     private String color;
+    @Column(length = 300)
     private String size;
+    @Column(length = 400)
     private String useSphere;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
