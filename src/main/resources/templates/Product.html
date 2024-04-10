@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/headers.css">
+    <link rel="stylesheet" href="../css/heroes.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/custom.css">
+</head>
+
+<body>
+    <header class="p-3 mb-3 border-bottom">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="http://127.0.0.1:8080/wholesaleBaseHome">
+                    <img src="../img/Logo1.png" / id="logo">
+                </a>
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="#" class="nav-link px-2 link-body-emphasis" onclick="allProducts()">Продукты</a></li>
+                    <li><a href="#" class="nav-link px-2 link-body-emphasis">Корзина</a></li>
+                    <li><a href="#" class="nav-link px-2 link-body-emphasis">Доставка</a></li>
+                </ul>
+
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+                    onclick="searchWholesaleBase()">Search</button>
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" id="searchForm">
+                    <input type="text" class="form-control" placeholder="Search..." aria-label="Search"
+                        name="searchField">
+                </form>
+
+                <div class="dropdown text-end">
+                    <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="../img/UserAccauntIcon.png" width="32" height="32" class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu text-small">
+                        <li><a class="dropdown-item" href="#">Настройки</a></li>
+                        <li><a class="dropdown-item" href="#">Профиль</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" id="logoutId" onclick="logOut()" "#">Выйти</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+            <div class="col-lg-6">
+                <h1 class="text-body-emphasis lh-1 mb-3" th:text="${product.getName()}"></h1>
+                <p class="lead" th:text="${product.getDescription()}"></p>
+            </div>
+            <div class="col-10 col-sm-8 col-lg-6">
+                <img th:src="@{../img/{image_name}(image_name=${product.getPhotoName()})}" class="d-block mx-lg-auto img-fluid productPhotoRadius" alt="Bootstrap Themes"
+                    width="500" height="300" loading="lazy">
+                
+                <table>
+                    <tr>
+                        <td><button type="button" class="btn btn-secondary">Оформить доставку</button></td>
+                        <td><button type="button" class="btn btn btn-dark">Добавить в корзину</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <table class="table table-striped">
+            <tr class="table-secondary">
+                <td class="table-secondary">Название:</td>
+                <td class="table-secondary" th:text="${productChar.getName()}"></td>
+            </tr>
+            <tr class="table-success">
+                <td class="table-success">Цвет:</td>
+                <td class="table-success" th:text="${productChar.getColor()}"></td>
+            </tr>
+            <tr class="table-secondary">
+                <td class="table-secondary">Материал:</td>
+                <td class="table-secondary" th:text="${productChar.getMaterialType()}"></td>
+            </tr>
+            <tr class="table-success">
+                <td class="table-success">Размер:</td>
+                <td class="table-success" th:text="${productChar.getSize()}"></td>
+            </tr>
+            <tr class="table-secondary">
+                <td class="table-secondary">Область применения:</td>
+                <td class="table-secondary" th:text="${productChar.getUseSphere()}"></td>
+            </tr>
+            <tr class="table-success">
+                <td class="table-success">Производитель:</td>
+                <td class="table-success" th:text="${product.getProducer()}"></td>
+            </tr>
+            <tr class="table-secondary">
+                <td class="table-secondary">Количество:</td>
+                <td class="table-secondary" th:text="${product.getQuantity()}"></td>
+            </tr>
+            <tr class="table-success">
+                <td class="table-success">Оптовая база:</td>
+                <td class="table-success" th:text="${product.getBase().getName()}"></td>
+            </tr>
+            
+        </table>
+    </div>
+
+    <script src="../js/customJSlogic.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -9,4 +9,6 @@ public interface ProductService {
     List<Product> getAllProducts();
 
     List<Product> getAllProductsWithFilter(ProductFilter filter);
+
+    Product getProductById(int id);
 }

@@ -12,6 +12,7 @@ import ru.lisin.bazopt.services.ProductService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -38,5 +39,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getAllProductsWithFilter(ProductFilter filter) {
         return customProductRepository.getProductsWithFilter(filter);
+    }
+
+    @Override
+    public Product getProductById(int id) {
+        Optional<Product> productOptional = productRepository.findById(id);
+        return productOptional.orElse(null);
     }
 }

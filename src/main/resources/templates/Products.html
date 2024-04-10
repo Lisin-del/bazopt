@@ -91,7 +91,9 @@
                         loading="lazy" class="productPhotoRadius">
                 </div>
                 <div class="col textAlignLeft">
-                    <h5 th:text="${product.getName()}"></h5>
+                    <a th:product-id="${product.getId()}" th:onclick="openProductSeparatePage(this.getAttribute('product-id'))" class="productLink">
+                        <h5 th:text="${product.getName()}"></h5>
+                    </a>
                     <p th:text="'Количество: ' + ${product.getQuantity()}"></p>
                     <p th:text="'Производитель: ' + ${product.getProducer()}"></p>
                 </div>

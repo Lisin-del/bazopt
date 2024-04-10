@@ -11,15 +11,15 @@ function redirectToHomePage() {
 }
 
 function redirectToWholesaleBasePage() {
-    window.location = "http://127.0.0.1:8080/wholesaleBaseHome";
+    window.location.href = "http://127.0.0.1:8080/wholesaleBaseHome";
 }
 
 function logOut() {
-    window.location = "http://127.0.0.1:8080/logout";
+    window.location.href = "http://127.0.0.1:8080/logout";
 }
 
 function allProducts() {
-    window.location = "http://127.0.0.1:8080/allProducts";
+    window.location.href = "http://127.0.0.1:8080/allProducts";
 }
 
 async function sendRegistrationData() {
@@ -101,6 +101,11 @@ async function sendLoginData() {
 
 function openWholesaleBaseSeparatePage(wholesaleBaseName) {
     url = "http://127.0.0.1:8080/wholesaleBase/".concat(wholesaleBaseName);
+    window.location.href = url;
+}
+
+function openProductSeparatePage(id) {
+    url = "http://127.0.0.1:8080/product/".concat(id);
     window.location.href = url;
 }
 

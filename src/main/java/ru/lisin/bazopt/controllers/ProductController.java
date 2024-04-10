@@ -1,23 +1,29 @@
 package ru.lisin.bazopt.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.lisin.bazopt.model.Product;
 import ru.lisin.bazopt.model.ProductFilter;
+import ru.lisin.bazopt.model.ProductTechnicalCharacteristic;
 import ru.lisin.bazopt.services.ProductService;
+import ru.lisin.bazopt.services.ProductTechnicalCharacteristicService;
 
 import java.util.List;
 
 @Controller
 public class ProductController {
     private final ProductService productService;
+    private final ProductTechnicalCharacteristicService productTechnicalCharacteristicService;
 
     @Autowired
-    public ProductController(ProductService productService) {
+    public ProductController(
+            ProductService productService,
+            ProductTechnicalCharacteristicService productTechnicalCharacteristicService
+    ) {
         this.productService = productService;
+        this.productTechnicalCharacteristicService = productTechnicalCharacteristicService;
     }
 
     @GetMapping("/allProducts")
@@ -40,5 +46,18 @@ public class ProductController {
         );
         model.addAttribute("products", products);
         return "Products";
+    }
+
+    @GetMapping(path = "/product/{id}")
+    public String getProductById(@PathVariable(name = "id") int id, Model model) {
+        Product product = productService.getProductById(id);
+        ProductTechnicalCharacteristic productCharacteristic = productTechnicalCharacteristicService.getByProductId(
+                product.getId()
+        );
+
+        model.addAttribute("product", product);
+        model.addAttribute("productChar", productCharacteristic);
+
+        return "Product";
     }
 }
