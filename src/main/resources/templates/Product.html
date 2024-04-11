@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Products</title>
+    <title>Product</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/headers.css">
     <link rel="stylesheet" href="../css/heroes.css">
@@ -21,7 +21,7 @@
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="#" class="nav-link px-2 link-body-emphasis" onclick="allProducts()">Продукты</a></li>
-                    <li><a href="#" class="nav-link px-2 link-body-emphasis">Корзина</a></li>
+                    <li><a href="#" class="nav-link px-2 link-body-emphasis" onclick="basketProduct()">Корзина</a></li>
                     <li><a href="#" class="nav-link px-2 link-body-emphasis">Доставка</a></li>
                 </ul>
 
@@ -55,17 +55,17 @@
             <div class="col-lg-6">
                 <h1 class="text-body-emphasis lh-1 mb-3" th:text="${product.getName()}"></h1>
                 <p class="lead" th:text="${product.getDescription()}"></p>
+                <table>
+                    <tr>
+                        <td><button type="button" class="btn btn-secondary">Оформить</button></td>
+                        <td><button type="button" class="btn btn btn-dark" th:product-id="${product.getId()}" th:onclick="addToBasket(this.getAttribute('product-id'))">Добавить в корзину</button></td>
+                    </tr>
+                </table>
             </div>
             <div class="col-10 col-sm-8 col-lg-6">
                 <img th:src="@{../img/{image_name}(image_name=${product.getPhotoName()})}" class="d-block mx-lg-auto img-fluid productPhotoRadius" alt="Bootstrap Themes"
                     width="500" height="300" loading="lazy">
                 
-                <table>
-                    <tr>
-                        <td><button type="button" class="btn btn-secondary">Оформить доставку</button></td>
-                        <td><button type="button" class="btn btn btn-dark">Добавить в корзину</button></td>
-                    </tr>
-                </table>
             </div>
         </div>
         <table class="table table-striped">

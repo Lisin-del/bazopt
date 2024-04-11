@@ -22,6 +22,10 @@ function allProducts() {
     window.location.href = "http://127.0.0.1:8080/allProducts";
 }
 
+function basketProduct() {
+    window.location.href = "http://127.0.0.1:8080/basket"
+}
+
 async function sendRegistrationData() {
     try {
         let formData = new FormData(document.getElementById("registrationFormContainer"));
@@ -134,6 +138,11 @@ async function getProductsWithFilter() {
         .concat("price=").concat(priceValue).concat("&")
         .concat("quantity=").concat(quantityValue)
 
+    window.location.href = url;
+}
+
+function addToBasket(productId) {
+    url = "http://127.0.0.1:8080/basket/add?productId=".concat(productId);
     window.location.href = url;
 }
 //

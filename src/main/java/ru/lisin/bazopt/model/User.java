@@ -8,7 +8,10 @@ import lombok.Getter;
 import java.util.stream.Stream;
 
 @Entity
-@Table(name = "li_user")
+@Table(
+        name = "li_user",
+        uniqueConstraints = {@UniqueConstraint(name = "uniqueEmail", columnNames = {"email"})}
+)
 @Data
 public class User {
     @Id
