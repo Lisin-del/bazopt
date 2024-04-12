@@ -141,9 +141,50 @@ async function getProductsWithFilter() {
     window.location.href = url;
 }
 
-function addToBasket(productId) {
-    url = "http://127.0.0.1:8080/basket/add?productId=".concat(productId);
-    window.location.href = url;
+async function addToBasket(productId) {
+    url = "http://127.0.0.1:8080/basket/put?productId=".concat(productId);
+    
+    csrfResponse = await fetch("http://127.0.0.1:8080/csrf");
+    if (csrfResponse.status === 200) {
+        csrfJson = await csrfResponse.json();
+        headers = {};
+        headers[csrfJson.headerName] = csrfJson.token;
+        
+        basketResponse = await fetch(url, {
+            method: "POST",
+            headers: headers
+        });
+        
+        if (basketResponse.status === 200) {
+            window.location.href = basketResponse.url;
+        }
+    } else {
+        throw new Error("There are errors with CSRF token getting");
+    }
+}
+
+async function deleteFromBasket(basketProductId) {
+    url = "http://127.0.0.1:8080/basket/delete?id=".concat(basketProductId);
+
+    csrfResponse = await fetch("http://127.0.0.1:8080/csrf");
+    if (csrfResponse.status === 200) {
+        csrfJson = await csrfResponse.json();
+        headers = {};
+        headers[csrfJson.headerName] = csrfJson.token;
+        
+        basketResponse = await fetch(url, {
+            method: "DELETE",
+            headers: headers
+        });
+        
+        console.log(basketResponse.status);
+
+        if (basketResponse.status === 200) {
+            window.location.href = basketResponse.url;
+        }
+    } else {
+        throw new Error("There are errors with CSRF token getting");
+    }
 }
 //
 //        let response = await fetch("http://127.0.0.1:8080/login-process", {

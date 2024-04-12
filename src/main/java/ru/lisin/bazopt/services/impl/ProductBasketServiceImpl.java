@@ -3,7 +3,6 @@ package ru.lisin.bazopt.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import ru.lisin.bazopt.model.Product;
 import ru.lisin.bazopt.model.ProductBasket;
 import ru.lisin.bazopt.model.User;
 import ru.lisin.bazopt.repository.ProductBasketRepository;
@@ -31,10 +30,25 @@ public class ProductBasketServiceImpl implements ProductBasketService {
     }
 
     @Override
-    public List<Product> getBasketProductsByUser() {
+    public List<ProductBasket> getBasketProductsByUser() {
         String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.getUserByEmail(userEmail);
-        List<ProductBasket> basketProducts = productBasketRepository.getBasketProductByUser(user.getId());
-        return basketProducts.stream().map(bp -> bp.getProduct()).toList();
+        return productBasketRepository.getBasketProductByUser(user.getId());
+    }
+
+    @Override
+    public void putIntoBasket(int productId) {
+        String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.getUserByEmail(userEmail);
+        ProductBasket productBasket = ProductBasket.builder()
+                .user(user)
+                .product(productService.getProductById(productId))
+                .build();
+        productBasketRepository.save(productBasket);
+    }
+
+    @Override
+    public void deleteProduct(int id) {
+        productBasketRepository.deleteById(Long.valueOf(id));
     }
 }

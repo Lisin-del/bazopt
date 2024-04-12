@@ -5,10 +5,9 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ru.lisin.bazopt.model.Product;
+import ru.lisin.bazopt.model.ProductBasket;
 import ru.lisin.bazopt.services.ProductBasketService;
 
 import java.util.List;
@@ -22,15 +21,22 @@ public class ProductBasketController {
         this.productBasketService = productBasketService;
     }
 
-    @PostMapping(path = "/basket/add")
-    public void putIntoBasket(@RequestParam(name = "productId") int productId) {
-
+    @PostMapping(path = "/basket/put")
+    public String putIntoBasket(@RequestParam(name = "productId") int productId) {
+        productBasketService.putIntoBasket(productId);
+        return "redirect:/basket";
     }
 
-    @GetMapping(path = "/basket")
+    @RequestMapping(path = "/basket")
     public String getBasketPage(Model model) {
-        List<Product> basketProductsByUser = productBasketService.getBasketProductsByUser();
-        model.addAttribute("products", basketProductsByUser);
+        List<ProductBasket> basketProductsByUser = productBasketService.getBasketProductsByUser();
+        model.addAttribute("basketProducts", basketProductsByUser);
         return "ProductBasket";
+    }
+
+    @RequestMapping(path = "/basket/delete", method = RequestMethod.DELETE)
+    public String deleteProduct(@RequestParam(name = "id") int id) {
+        productBasketService.deleteProduct(id);
+        return "redirect:/basket";
     }
 }
