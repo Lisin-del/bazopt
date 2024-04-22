@@ -11,4 +11,6 @@ public interface ProductService {
     List<Product> getAllProductsWithFilter(ProductFilter filter);
 
     Product getProductById(int id);
+
+    List<Product> getProductsByUserSearchText(String userSearchText);
 }

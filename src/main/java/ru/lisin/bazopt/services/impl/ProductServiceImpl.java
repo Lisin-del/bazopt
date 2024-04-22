@@ -46,4 +46,9 @@ public class ProductServiceImpl implements ProductService {
         Optional<Product> productOptional = productRepository.findById(id);
         return productOptional.orElse(null);
     }
+
+    @Override
+    public List<Product> getProductsByUserSearchText(String userSearchText) {
+        return productRepository.getProductsByUserSearchText(userSearchText);
+    }
 }

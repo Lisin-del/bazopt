@@ -60,4 +60,11 @@ public class ProductController {
 
         return "Product";
     }
+
+    @GetMapping(path = "/products/search")
+    public String getProductsByUserSearchText(@RequestParam(name = "userSearch") String userSearchText, Model model) {
+        List<Product> productsByUserSearchText = productService.getProductsByUserSearchText(userSearchText);
+        model.addAttribute("products", productsByUserSearchText);
+        return "Products";
+    }
 }

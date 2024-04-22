@@ -114,10 +114,10 @@ function openProductSeparatePage(id) {
 }
 
 //todo: replace the search for bases with search for products
-function searchWholesaleBase() {
+function searchProducts() {
     searchFormData = new FormData(document.getElementById("searchForm"));
     userSearch = searchFormData.get("searchField");
-    url = "http://127.0.0.1:8080/wholesaleBaseHome/filter?userSearch=".concat(userSearch);
+    url = "http://127.0.0.1:8080/products/search?userSearch=".concat(userSearch);
     window.location.href = url;
 }
 
