@@ -121,6 +121,11 @@ function searchProducts() {
     window.location.href = url;
 }
 
+function getProductsByBaseID(baseID) {
+    url = "http://127.0.0.1:8080/products/bases?baseID=".concat(baseID);
+    window.location.href = url;
+}
+
 async function getProductsWithFilter() {
     countrySelector = document.getElementById("countrySelector");
     countrySelectorValue = countrySelector.options[countrySelector.selectedIndex].text;

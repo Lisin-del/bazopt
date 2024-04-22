@@ -51,4 +51,9 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getProductsByUserSearchText(String userSearchText) {
         return productRepository.getProductsByUserSearchText(userSearchText);
     }
+
+    @Override
+    public List<Product> getProductsByBaseID(int baseID) {
+        return productRepository.getProductsByBaseID(baseID);
+    }
 }

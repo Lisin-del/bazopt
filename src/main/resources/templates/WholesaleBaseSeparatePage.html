@@ -54,7 +54,7 @@
                 <div class="h-100 p-5 bg-body-tertiary border rounded-3">
                     <h2 th:text="${base.getName()}"></h2>
                     <p th:text="${base.getDescription()}"></p>
-                    <button class="btn btn-dark" type="button">Продукты</button>
+                    <button class="btn btn-dark" type="button" th:base-id="${base.getId()}" th:onclick="getProductsByBaseID(this.getAttribute('base-id'))">Продукты</button>
                 </div>
             </div>
             <div class="col-md-6">

@@ -67,4 +67,11 @@ public class ProductController {
         model.addAttribute("products", productsByUserSearchText);
         return "Products";
     }
+
+    @GetMapping(path = "/products/bases")
+    public String getProductsByBaseID(@RequestParam(name = "baseID") int baseID, Model model) {
+        List<Product> productsByBaseID = productService.getProductsByBaseID(baseID);
+        model.addAttribute("products", productsByBaseID);
+        return "Products";
+    }
 }
