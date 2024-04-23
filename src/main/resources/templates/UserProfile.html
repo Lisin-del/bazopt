@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bases</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="../css/headers.css">
+    <link rel="stylesheet" href="../css/heroes.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+</head>
+
+<body>
+    <header class="p-3 mb-3 border-bottom">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="http://127.0.0.1:8080/wholesaleBaseHome">
+                    <img src="../img/Logo1.png" / id="logo">
+                </a>
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="#" class="nav-link px-2 link-body-emphasis" onclick="allProducts()">Продукты</a></li>
+                    <li><a href="#" class="nav-link px-2 link-body-emphasis" onclick="basketProduct()">Корзина</a></li>
+                    <li><a href="#" class="nav-link px-2 link-body-emphasis">Доставка</a></li>
+                </ul>
+
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+                    onclick="searchProducts()">Search</button>
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" id="searchForm">
+                    <input type="text" class="form-control" placeholder="Search..." aria-label="Search"
+                        name="searchField">
+                </form>
+
+                <div class="dropdown text-end">
+                    <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="../img/UserAccauntIcon.png" width="32" height="32" class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu text-small">
+                        <li><a class="dropdown-item" href="#">Настройки</a></li>
+                        <li><a class="dropdown-item" onclick="getUserProfile()">Профиль</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" id="logoutId" onclick="logOut()">Выйти</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3">Данные пользователя</h4>
+                <form class="needs-validation" novalidate>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label for="firstName" class="form-label">Имя</label>
+                            <input type="text" class="form-control" id="firstName" th:placeholder="${user.getFirstname()}">
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="lastName" class="form-label">Фамилия</label>
+                            <input type="text" class="form-control" id="lastName" th:placeholder="${user.getLastname()}">
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" th:placeholder="${user.getEmail()}">
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">Адрес</label>
+                            <input type="text" class="form-control" id="address" th:placeholder="${user.getAddress()}">
+                        </div>
+
+                        <div class="col-12">
+                            <button type="button" class="btn btn-dark">Сохранить</button>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+                    
+                    <h4 class="mb-3">Оплата</h4>
+
+                    <div class="row gy-3">
+                        <div class="col-md-6">
+                            <label for="cc-name" class="form-label">ФИО</label>
+                            <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="cc-number" class="form-label">Номер карты</label>
+                            <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="cc-expiration" class="form-label">Дата</label>
+                            <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="cc-cvv" class="form-label">CVV</label>
+                            <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                        </div>
+
+                        <div class="col-12">
+                            <button type="button" class="btn btn-dark">Сохранить</button>
+                        </div>
+                    </div>
+
+                    
+                    
+                   
+
+                    <hr class="my-4">
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../js/customJSlogic.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -32,10 +32,12 @@ async function sendRegistrationData() {
         let firstNameVar = formData.get("Firstname");
         let lastNameVar = formData.get("Lastname");
         let emailVar = formData.get("Email");
+        let addressVar = formData.get("Address");
         let passwordVar = formData.get("Password");
         let jsonString = {
             firstname: firstNameVar,
             lastname: lastNameVar,
+            address: addressVar,
             email: emailVar,
             password: passwordVar,
             role: "user"
@@ -124,6 +126,10 @@ function searchProducts() {
 function getProductsByBaseID(baseID) {
     url = "http://127.0.0.1:8080/products/bases?baseID=".concat(baseID);
     window.location.href = url;
+}
+
+function getUserProfile() {
+    window.location.href = "http://127.0.0.1:8080/user/getUserProfile";
 }
 
 async function getProductsWithFilter() {

@@ -22,6 +22,8 @@ public class User {
     private String email;
     private String password;
     private String role;
+    @Column(length = 500)
+    private String address;
 
     @AllArgsConstructor
     public enum Role {
