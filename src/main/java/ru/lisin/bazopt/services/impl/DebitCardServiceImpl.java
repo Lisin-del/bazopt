@@ -20,7 +20,17 @@ public class DebitCardServiceImpl implements DebitCardService {
 
     @Override
     public DebitCard saveCard(DebitCard savedCard) {
-        savedCard.setUser(userService.getCurrentUser());
-        return debitCardRepository.save(savedCard);
+        DebitCard existingDebitCard = debitCardRepository.getDebitCardByNumber(savedCard.getCardNumber());
+
+        if (existingDebitCard != null) {
+            existingDebitCard.setUser(userService.getCurrentUser());
+            existingDebitCard.setCardNumber(savedCard.getCardNumber());
+            existingDebitCard.setCvv(savedCard.getCvv());
+            existingDebitCard.setUserFullName(savedCard.getUserFullName());
+            existingDebitCard.setExpirationDate(savedCard.getExpirationDate());
+            return debitCardRepository.save(existingDebitCard);
+        } else {
+            return debitCardRepository.save(savedCard);
+        }
     }
 }

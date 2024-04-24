@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import ru.lisin.bazopt.model.DebitCard;
 import ru.lisin.bazopt.services.DebitCardService;
 
@@ -19,7 +20,9 @@ public class DebitCardController {
     }
 
     @PostMapping(path = "/save")
+    @ResponseBody
     public void saveDebitCard(@RequestBody DebitCard debitCard) {
-        debitCardService.saveCard(debitCard);
+        DebitCard debitCard1 = debitCardService.saveCard(debitCard);
+        int i = 0;
     }
 }

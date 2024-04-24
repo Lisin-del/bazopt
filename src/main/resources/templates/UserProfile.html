@@ -54,7 +54,7 @@
         <div class="row g-5">
             <div class="col-md-7 col-lg-8">
                 <h4 class="mb-3">Данные пользователя</h4>
-                <form class="needs-validation" novalidate>
+                <form class="needs-validation" id="userInfo">
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <label for="firstName" class="form-label">Имя</label>
@@ -88,26 +88,26 @@
                     <div class="row gy-3">
                         <div class="col-md-6">
                             <label for="cc-name" class="form-label">ФИО</label>
-                            <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                            <input type="text" class="form-control" id="cc-name" placeholder="" name="cardFullName">
                         </div>
 
                         <div class="col-md-6">
                             <label for="cc-number" class="form-label">Номер карты</label>
-                            <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                            <input type="text" class="form-control" id="cc-number" placeholder="" name="cardNumber">
                         </div>
 
                         <div class="col-md-3">
                             <label for="cc-expiration" class="form-label">Дата</label>
-                            <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                            <input type="text" class="form-control" id="cc-expiration" placeholder="" name="date">
                         </div>
 
                         <div class="col-md-3">
                             <label for="cc-cvv" class="form-label">CVV</label>
-                            <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                            <input type="text" class="form-control" id="cc-cvv" placeholder="" name="cvv">
                         </div>
 
                         <div class="col-12">
-                            <button type="button" class="btn btn-dark">Сохранить</button>
+                            <button type="button" class="btn btn-dark" onclick="updateUserInfo()">Сохранить</button>
                         </div>
                     </div>
 

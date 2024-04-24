@@ -6,6 +6,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
+@Table(uniqueConstraints = {@UniqueConstraint(name = "cardNumber", columnNames = {"card_number"})})
 @Data
 public class DebitCard {
     @Id

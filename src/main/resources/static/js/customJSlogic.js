@@ -26,6 +26,44 @@ function basketProduct() {
     window.location.href = "http://127.0.0.1:8080/basket"
 }
 
+async function updateUserInfo() {
+    try {
+        let formData = new FormData(document.getElementById("userInfo"));
+
+        let fullNameVar = formData.get("cardFullName");
+        let cardNumberVar = formData.get("cardNumber");
+        let dateVar = formData.get("date");
+        let cvvVar = formData.get("cvv");
+        
+        let jsonString = {
+            userFullName: fullNameVar,
+            cardNumber: cardNumberVar,
+            expirationDate: dateVar,
+            cvv: cvvVar
+        };
+
+        let cardJson = JSON.stringify(jsonString);
+        
+        csrfResponse = await fetch("http://127.0.0.1:8080/csrf");
+        
+        if (csrfResponse.status === 200) {
+            csrfJson = await csrfResponse.json();
+            headers = {};
+            headers[csrfJson.headerName] = csrfJson.token;
+            headers['Content-Type'] = 'application/json';
+            cardUpdateResponse = await fetch("http://127.0.0.1:8080/debitCard/save", {
+                method: "POST",
+                headers: headers,
+                body: cardJson
+            });
+        }
+
+    } catch (e) {
+        console.error(e);
+    }
+    // TODO: need to redirect to the same page, just refresh the page))
+}
+
 async function sendRegistrationData() {
     try {
         let formData = new FormData(document.getElementById("registrationFormContainer"));
