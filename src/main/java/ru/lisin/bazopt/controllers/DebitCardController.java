@@ -22,7 +22,6 @@ public class DebitCardController {
     @PostMapping(path = "/save")
     @ResponseBody
     public void saveDebitCard(@RequestBody DebitCard debitCard) {
-        DebitCard debitCard1 = debitCardService.saveCard(debitCard);
-        int i = 0;
+        debitCardService.saveCard(debitCard);
     }
 }

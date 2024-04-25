@@ -26,7 +26,11 @@ function basketProduct() {
     window.location.href = "http://127.0.0.1:8080/basket"
 }
 
-async function updateUserInfo() {
+function redirectToUserProfile() {
+    window.location.href = "http://127.0.0.1:8080/user/getUserProfile";
+}
+
+async function updateUserDebitCard() {
     try {
         let formData = new FormData(document.getElementById("userInfo"));
 
@@ -57,11 +61,48 @@ async function updateUserInfo() {
                 body: cardJson
             });
         }
-
+        redirectToUserProfile();
     } catch (e) {
         console.error(e);
     }
-    // TODO: need to redirect to the same page, just refresh the page))
+    
+}
+
+async function updateUserInfo() {
+    try {
+        csrfResponse = await fetch("http://127.0.0.1:8080/csrf");
+
+        if (csrfResponse.status === 200) {
+            csrfJson = await csrfResponse.json();
+            headers = {};
+            headers[csrfJson.headerName] = csrfJson.token;
+            headers['Content-Type'] = 'application/json';
+            
+            let formData = new FormData(document.getElementById("userInfo"));
+            let firstNameVar = formData.get("FirstName");
+            let lastNameVar = formData.get("LastName");
+            let emailVar = formData.get("Email");
+            let addressVar = formData.get("Address");
+            let passwordVar = formData.get("Password");
+            let jsonString = {
+                firstname: firstNameVar,
+                lastname: lastNameVar,
+                address: addressVar,
+                email: emailVar,
+                password: passwordVar,
+                role: "user"
+            }
+            let userJson = JSON.stringify(jsonString);
+            registrationResponse = await fetch("http://127.0.0.1:8080/user/update", {
+                method: "POST",    
+                headers: headers,
+                body: userJson
+            });
+        }
+        redirectToUserProfile();
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 async function sendRegistrationData() {

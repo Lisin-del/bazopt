@@ -11,4 +11,7 @@ public interface DebitCardRepository extends JpaRepository<DebitCard, Integer> {
 
     @Query(value = "SELECT c FROM DebitCard c WHERE c.cardNumber = :number")
     DebitCard getDebitCardByNumber(@Param(value = "number") String number);
+
+    @Query(value = "SELECT c FROM DebitCard c WHERE c.user.id = :userID")
+    DebitCard getDebitCardByUserID(@Param(value = "userID") long userID);
 }

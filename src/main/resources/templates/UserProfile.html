@@ -58,26 +58,31 @@
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <label for="firstName" class="form-label">Имя</label>
-                            <input type="text" class="form-control" id="firstName" th:placeholder="${user.getFirstname()}">
+                            <input type="text" class="form-control" id="firstName" th:value="${user.getFirstname()}" name="FirstName">
                         </div>
 
                         <div class="col-sm-6">
                             <label for="lastName" class="form-label">Фамилия</label>
-                            <input type="text" class="form-control" id="lastName" th:placeholder="${user.getLastname()}">
+                            <input type="text" class="form-control" id="lastName" th:value="${user.getLastname()}" name="LastName">
                         </div>
 
                         <div class="col-12">
                             <label class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" th:placeholder="${user.getEmail()}">
+                            <input type="email" class="form-control" id="email" th:value="${user.getEmail()}" name="Email">
                         </div>
 
                         <div class="col-12">
                             <label class="form-label">Адрес</label>
-                            <input type="text" class="form-control" id="address" th:placeholder="${user.getAddress()}">
+                            <input type="text" class="form-control" id="address" th:value="${user.getAddress()}" name="Address">
                         </div>
 
                         <div class="col-12">
-                            <button type="button" class="btn btn-dark">Сохранить</button>
+                            <label class="form-label">Пароль</label>
+                            <input type="password" class="form-control" id="address" placeholder="********" name="Password">
+                        </div>
+
+                        <div class="col-12">
+                            <button type="button" class="btn btn-dark" onclick="updateUserInfo()">Сохранить</button>
                         </div>
                     </div>
 
@@ -88,26 +93,26 @@
                     <div class="row gy-3">
                         <div class="col-md-6">
                             <label for="cc-name" class="form-label">ФИО</label>
-                            <input type="text" class="form-control" id="cc-name" placeholder="" name="cardFullName">
+                            <input type="text" class="form-control" id="cc-name" th:value="${debitCard.getUserFullName()}" name="cardFullName">
                         </div>
 
                         <div class="col-md-6">
                             <label for="cc-number" class="form-label">Номер карты</label>
-                            <input type="text" class="form-control" id="cc-number" placeholder="" name="cardNumber">
+                            <input type="text" class="form-control" id="cc-number" th:value="${debitCard.getCardNumber()}" name="cardNumber">
                         </div>
 
                         <div class="col-md-3">
                             <label for="cc-expiration" class="form-label">Дата</label>
-                            <input type="text" class="form-control" id="cc-expiration" placeholder="" name="date">
+                            <input type="text" class="form-control" id="cc-expiration" th:value="${debitCard.getExpirationDate()}" name="date">
                         </div>
 
                         <div class="col-md-3">
                             <label for="cc-cvv" class="form-label">CVV</label>
-                            <input type="text" class="form-control" id="cc-cvv" placeholder="" name="cvv">
+                            <input type="text" class="form-control" id="cc-cvv" th:value="${debitCard.getCvv()}" name="cvv">
                         </div>
 
                         <div class="col-12">
-                            <button type="button" class="btn btn-dark" onclick="updateUserInfo()">Сохранить</button>
+                            <button type="button" class="btn btn-dark" onclick="updateUserDebitCard()">Сохранить</button>
                         </div>
                     </div>
 

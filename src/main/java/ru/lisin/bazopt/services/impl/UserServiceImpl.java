@@ -44,4 +44,21 @@ public class UserServiceImpl implements UserService {
         String currentUserEmail = SecurityContextHolder.getContext().getAuthentication().getName();
         return userRepository.getUserByEmail(currentUserEmail);
     }
+
+    @Override
+    public User updateUser(User user) {
+        User currentUser = getCurrentUser();
+        currentUser.setEmail(user.getEmail());
+        currentUser.setFirstname(user.getFirstname());
+        currentUser.setLastname(user.getLastname());
+
+        String passwordToSave = user.getPassword();
+        if (passwordToSave != null && !passwordToSave.isEmpty()) {
+            currentUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
+
+        currentUser.setAddress(user.getAddress());
+
+        return userRepository.save(currentUser);
+    }
 }

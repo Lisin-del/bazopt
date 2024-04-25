@@ -33,4 +33,9 @@ public class DebitCardServiceImpl implements DebitCardService {
             return debitCardRepository.save(savedCard);
         }
     }
+
+    @Override
+    public DebitCard getDebitCardByUserID(long userID) {
+        return debitCardRepository.getDebitCardByUserID(userID);
+    }
 }
