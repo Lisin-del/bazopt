@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Basket</title>
+    <title>Orders</title>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/headers.css">
     <link rel="stylesheet" href="../css/heroes.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/custom.css">
 </head>
-
 <body>
     <header class="p-3 mb-3 border-bottom">
         <div class="container">
@@ -49,37 +47,5 @@
             </div>
         </div>
     </header>
-    <div class="container text-center productRowTopMargin">
-        <div th:each="basketProduct: ${basketProducts}">
-            <div class="row productRow">
-                <div class="col productPhotoColSize">
-                    <img th:src="@{../img/{image_name}(image_name=${basketProduct.getProduct().getPhotoName()})}" width="170" height="120"
-                        loading="lazy" class="productPhotoRadius">
-                </div>
-                <div class="col textAlignLeft">
-                    <a th:product-id="${basketProduct.getProduct().getId()}" th:onclick="openProductSeparatePage(this.getAttribute('product-id'))" class="productLink">
-                        <h5 th:text="${basketProduct.getProduct().getName()}"></h5>
-                    </a>
-                    <p th:text="'Количество: ' + ${basketProduct.getProduct().getQuantity()}"></p>
-                    <p th:text="'Производитель: ' + ${basketProduct.getProduct().getProducer()}"></p>
-                </div>
-                <div class="col">
-                    <h6 th:text="${basketProduct.getProduct().getBase().getName()}"></h6>
-                </div>
-                <div class="col">
-                    <p><strong th:text="${basketProduct.getProduct().getPrice()} + ' руб.'"></strong></p>
-                </div>
-                <div class="col">
-                    <button type="button" class="btn btn btn-dark" th:basketProduct-id="${basketProduct.getId()}" th:onClick="deleteFromBasket(this.getAttribute('basketProduct-id'))">Удалить</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <script src="../js/customJSlogic.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

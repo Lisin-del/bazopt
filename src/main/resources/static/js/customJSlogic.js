@@ -26,6 +26,10 @@ function basketProduct() {
     window.location.href = "http://127.0.0.1:8080/basket"
 }
 
+function allOrders() {
+    window.location.href = "http://127.0.0.1:8080/order/all"
+}
+
 function redirectToUserProfile() {
     window.location.href = "http://127.0.0.1:8080/user/getUserProfile";
 }

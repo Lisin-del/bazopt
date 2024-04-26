@@ -27,7 +27,7 @@ public class ProductBasketController {
         return "redirect:/basket";
     }
 
-    @RequestMapping(path = "/basket")
+    @GetMapping(path = "/basket")
     public String getBasketPage(Model model) {
         List<ProductBasket> basketProductsByUser = productBasketService.getBasketProductsByUser();
         model.addAttribute("basketProducts", basketProductsByUser);
