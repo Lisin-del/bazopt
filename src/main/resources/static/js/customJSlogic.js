@@ -34,6 +34,18 @@ function redirectToUserProfile() {
     window.location.href = "http://127.0.0.1:8080/user/getUserProfile";
 }
 
+function getOrderCreationInfo() {
+    window.location.href = "http://127.0.0.1:8080/order/getOrderCreationInfo";
+}
+
+async function createOrder() {
+    try {
+        let formData = new FormData(document.getElementById().get)
+    } catch(e) {
+        log.error("Order creation failed " + e);
+    }
+}
+
 async function updateUserDebitCard() {
     try {
         let formData = new FormData(document.getElementById("userInfo"));

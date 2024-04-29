@@ -4,11 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import ru.lisin.bazopt.model.Order;
 import ru.lisin.bazopt.services.OrderService;
-import ru.lisin.bazopt.services.ProductBasketService;
 
 @Controller
 public class OrderController {
@@ -24,9 +21,10 @@ public class OrderController {
         return "Orders";
     }
 
-    @PostMapping(path = "/order/create")
-    @ResponseBody
-    public void createOrder() {
-        orderService.createOrder();
+    @GetMapping(path = "/order/getOrderCreationInfo")
+    public String getOrderCreationInfo(Model model) {
+        Order order = orderService.createOrderCreationInfo();
+        model.addAttribute("order", order);
+        return "OrderCreationInfo";
     }
 }

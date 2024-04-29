@@ -31,9 +31,7 @@ public class ProductBasketServiceImpl implements ProductBasketService {
 
     @Override
     public List<ProductBasket> getBasketProductsByUser() {
-        String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
-        User user = userService.getUserByEmail(userEmail);
-        return productBasketRepository.getBasketProductByUser(user.getId());
+        return productBasketRepository.getBasketProductByUser(userService.getCurrentUser().getId());
     }
 
     @Override
