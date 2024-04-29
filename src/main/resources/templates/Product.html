@@ -57,11 +57,10 @@
                 <p class="lead" th:text="${product.getDescription()}"></p>
                 <table>
                     <tr>
-                        <td><button type="button" class="btn btn-secondary">Оформить</button></td>
                         <td><button type="button" class="btn btn btn-dark" th:product-id="${product.getId()}" th:onclick="addToBasket(this.getAttribute('product-id'))">Добавить в корзину</button></td>
+                        <td><input type="number" class="form-control" id="quantity" placeholder="Количество (мин. 100 шт.)" min="100"></td>
                     </tr>
                 </table>
-                <input type="text" class="form-control" id="quantity" placeholder="Количество">
             </div>
             <div class="col-10 col-sm-8 col-lg-6">
                 <img th:src="@{../img/{image_name}(image_name=${product.getPhotoName()})}" class="d-block mx-lg-auto img-fluid productPhotoRadius" alt="Bootstrap Themes"

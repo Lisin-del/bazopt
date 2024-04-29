@@ -21,4 +21,5 @@ public class ProductBasket {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
+    private long quantity;
 }

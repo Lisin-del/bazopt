@@ -30,18 +30,19 @@ public class OrderServiceImpl implements OrderService {
     public Order createOrderCreationInfo() {
         User user = userService.getCurrentUser();
 
-        List<Product> basketProducts = productBasketService.getBasketProductsByUser().stream()
-                .map(productBasket -> productBasket.getProduct())
-                .toList();
+        List<ProductBasket> basketProducts = productBasketService.getBasketProductsByUser();
 
         long orderPrice = 0;
-        for (Product product : basketProducts) {
-            orderPrice += product.getPrice();
+        for (ProductBasket product : basketProducts) {
+            long quantity = product.getQuantity();
+            orderPrice += product.getProduct().getPrice() * quantity;
         }
+
+        List<Product> products = basketProducts.stream().map(basketProduct -> basketProduct.getProduct()).toList();
 
         return Order.builder()
                 .user(user)
-                .products(basketProducts)
+                .products(products)
                 .address(user.getAddress())
                 .price(orderPrice)
                 .build();

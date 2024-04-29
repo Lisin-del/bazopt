@@ -60,7 +60,7 @@
                     <a th:product-id="${basketProduct.getProduct().getId()}" th:onclick="openProductSeparatePage(this.getAttribute('product-id'))" class="productLink">
                         <h5 th:text="${basketProduct.getProduct().getName()}"></h5>
                     </a>
-                    <p th:text="'Количество: ' + ${basketProduct.getProduct().getQuantity()}"></p>
+                    <p th:text="'Количество: ' + ${basketProduct.getQuantity()}"></p>
                     <p th:text="'Производитель: ' + ${basketProduct.getProduct().getProducer()}"></p>
                 </div>
                 <div class="col">

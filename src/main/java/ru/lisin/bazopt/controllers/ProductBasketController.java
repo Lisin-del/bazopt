@@ -22,8 +22,11 @@ public class ProductBasketController {
     }
 
     @PostMapping(path = "/basket/put")
-    public String putIntoBasket(@RequestParam(name = "productId") int productId) {
-        productBasketService.putIntoBasket(productId);
+    public String putIntoBasket(
+            @RequestParam(name = "productId") int productId,
+            @RequestParam(name = "quantity") long quantity
+    ) {
+        productBasketService.putIntoBasket(productId, quantity);
         return "redirect:/basket";
     }
 
@@ -34,9 +37,9 @@ public class ProductBasketController {
         return "ProductBasket";
     }
 
-    @RequestMapping(path = "/basket/delete", method = RequestMethod.DELETE)
-    public String deleteProduct(@RequestParam(name = "id") int id) {
+    @DeleteMapping(path = "/basket/delete")
+    @ResponseBody
+    public void deleteProduct(@RequestParam(name = "id") int id) {
         productBasketService.deleteProduct(id);
-        return "redirect:/basket";
     }
 }

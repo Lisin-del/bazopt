@@ -35,11 +35,12 @@ public class ProductBasketServiceImpl implements ProductBasketService {
     }
 
     @Override
-    public void putIntoBasket(int productId) {
+    public void putIntoBasket(int productId, long quantity) {
         String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userService.getUserByEmail(userEmail);
         ProductBasket productBasket = ProductBasket.builder()
                 .user(user)
+                .quantity(quantity)
                 .product(productService.getProductById(productId))
                 .build();
         productBasketRepository.save(productBasket);

@@ -8,7 +8,7 @@ import java.util.List;
 public interface ProductBasketService {
     List<ProductBasket> getBasketProductsByUser();
 
-    void putIntoBasket(int productId);
+    void putIntoBasket(int productId, long quantity);
 
     void deleteProduct(int id);
 }

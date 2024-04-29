@@ -56,7 +56,6 @@
                     <a th:product-id="${orderProduct.getId()}" th:onclick="openProductSeparatePage(this.getAttribute('product-id'))" class="productLink">
                         <h5 th:text="${orderProduct.getName()}"></h5>
                     </a>
-                    <p th:text="'Количество: ' + ${orderProduct.getQuantity()}"></p>
                     <p th:text="'Производитель: ' + ${orderProduct.getProducer()}"></p>
                 </div>
                 <div class="col">

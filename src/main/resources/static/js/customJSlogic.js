@@ -40,7 +40,7 @@ function getOrderCreationInfo() {
 
 async function createOrder() {
     try {
-        let formData = new FormData(document.getElementById().get)
+        let formData = document.getElementById();
     } catch(e) {
         log.error("Order creation failed " + e);
     }
@@ -248,8 +248,14 @@ async function getProductsWithFilter() {
 }
 
 async function addToBasket(productId) {
-    url = "http://127.0.0.1:8080/basket/put?productId=".concat(productId);
+    quantityValue = document.getElementById("quantity").value;
     
+    console.log("Quantity: " + quantityValue);
+    
+    url = "http://127.0.0.1:8080/basket/put?productId=".concat(productId).concat("&quantity=").concat(quantityValue);
+
+    console.log("URL: " + url);
+
     csrfResponse = await fetch("http://127.0.0.1:8080/csrf");
     if (csrfResponse.status === 200) {
         csrfJson = await csrfResponse.json();
@@ -286,7 +292,7 @@ async function deleteFromBasket(basketProductId) {
         console.log(basketResponse.status);
 
         if (basketResponse.status === 200) {
-            window.location.href = basketResponse.url;
+            basketProduct();
         }
     } else {
         throw new Error("There are errors with CSRF token getting");
