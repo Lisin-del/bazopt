@@ -19,7 +19,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
     @ManyToMany
-    private List<Product> products;
+    private List<ProductBasket> basketProducts;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

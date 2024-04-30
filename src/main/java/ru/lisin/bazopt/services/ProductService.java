@@ -15,4 +15,6 @@ public interface ProductService {
     List<Product> getProductsByUserSearchText(String userSearchText);
 
     List<Product> getProductsByBaseID(int baseID);
+
+    Product saveProduct(Product product);
 }

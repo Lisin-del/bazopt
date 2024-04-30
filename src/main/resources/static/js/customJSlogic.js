@@ -38,9 +38,28 @@ function getOrderCreationInfo() {
     window.location.href = "http://127.0.0.1:8080/order/getOrderCreationInfo";
 }
 
+function getAllOrders() {
+    window.location.href = "http://127.0.0.1:8080/oreder/all"
+}
+
 async function createOrder() {
     try {
-        let formData = document.getElementById();
+        csrfResponse = await fetch("http://127.0.0.1:8080/csrf");
+        
+        if (csrfResponse.status === 200) {
+            csrfJson = await csrfResponse.json();
+            
+            headers = {};
+            headers[csrfJson.headerName] = csrfJson.token;
+            headers['Content-Type'] = 'application/json';
+            
+            cardUpdateResponse = await fetch("http://127.0.0.1:8080/order/create", {
+                method: "POST",
+                headers: headers
+            });
+
+            getAllOrders();
+        }
     } catch(e) {
         log.error("Order creation failed " + e);
     }

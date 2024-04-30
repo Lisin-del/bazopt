@@ -48,6 +48,10 @@
         </div>
     </header>
 
+    <div th:each="order : ${orders}">
+        <p th:text="${order.getPrice()}"></p>
+    </div>
+
     <script src="../js/customJSlogic.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
 </body>

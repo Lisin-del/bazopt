@@ -56,4 +56,9 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getProductsByBaseID(int baseID) {
         return productRepository.getProductsByBaseID(baseID);
     }
+
+    @Override
+    public Product saveProduct(Product product) {
+        return productRepository.save(product);
+    }
 }

@@ -46,23 +46,23 @@
         </div>
     </header>
     <div class="container text-center productRowTopMargin">
-        <div th:each="orderProduct,itrStat : ${order.getProducts()}">
+        <div th:each="basketProduct,itrStat : ${order.getBasketProducts()}">
             <div class="row productRow">
                 <div class="col productPhotoColSize">
-                    <img th:src="@{../img/{image_name}(image_name=${orderProduct.getPhotoName()})}" width="170" height="120"
+                    <img th:src="@{../img/{image_name}(image_name=${basketProduct.getProduct().getPhotoName()})}" width="170" height="120"
                         loading="lazy" class="productPhotoRadius">
                 </div>
                 <div class="col textAlignLeft">
-                    <a th:product-id="${orderProduct.getId()}" th:onclick="openProductSeparatePage(this.getAttribute('product-id'))" class="productLink">
-                        <h5 th:text="${orderProduct.getName()}"></h5>
+                    <a th:product-id="${basketProduct.getProduct().getId()}" th:onclick="openProductSeparatePage(this.getAttribute('product-id'))" class="productLink">
+                        <h5 th:text="${basketProduct.getProduct().getName()}"></h5>
                     </a>
-                    <p th:text="'Производитель: ' + ${orderProduct.getProducer()}"></p>
+                    <p th:text="'Производитель: ' + ${basketProduct.getProduct().getProducer()}"></p>
                 </div>
                 <div class="col">
-                    <h6 th:text="${orderProduct.getBase().getName()}"></h6>
+                    <h6 th:text="${basketProduct.getProduct().getBase().getName()}"></h6>
                 </div>
                 <div class="col">
-                    <p><strong th:text="${orderProduct.getPrice()} + ' руб.'"></strong></p>
+                    <p><strong th:text="${basketProduct.getProduct().getPrice()} + ' руб.'"></strong></p>
                 </div>
             </div>
         </div>
