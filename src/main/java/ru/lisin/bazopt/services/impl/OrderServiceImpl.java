@@ -2,16 +2,11 @@ package ru.lisin.bazopt.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.lisin.bazopt.model.Order;
-import ru.lisin.bazopt.model.Product;
-import ru.lisin.bazopt.model.ProductBasket;
-import ru.lisin.bazopt.model.User;
+import ru.lisin.bazopt.model.*;
 import ru.lisin.bazopt.repository.OrderRepository;
-import ru.lisin.bazopt.services.OrderService;
-import ru.lisin.bazopt.services.ProductBasketService;
-import ru.lisin.bazopt.services.ProductService;
-import ru.lisin.bazopt.services.UserService;
+import ru.lisin.bazopt.services.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,18 +15,21 @@ public class OrderServiceImpl implements OrderService {
     private final UserService userService;
     private final ProductService productService;
     private final OrderRepository orderRepository;
+    private final ProductQuantityService productQuantityService;
 
     @Autowired
     public OrderServiceImpl(
             ProductBasketService productBasketService,
             UserService userService,
             ProductService productService,
-            OrderRepository orderRepository
+            OrderRepository orderRepository,
+            ProductQuantityService productQuantityService
     ) {
         this.productBasketService = productBasketService;
         this.userService = userService;
         this.productService = productService;
         this.orderRepository = orderRepository;
+        this.productQuantityService = productQuantityService;
     }
 
     @Override
@@ -46,9 +44,11 @@ public class OrderServiceImpl implements OrderService {
             orderPrice += product.getProduct().getPrice() * quantity;
         }
 
+        List<Product> products = basketProducts.stream().map(basketProduct -> basketProduct.getProduct()).toList();
+
         return Order.builder()
                 .user(user)
-                .basketProducts(basketProducts)
+                .products(products)
                 .address(user.getAddress())
                 .price(orderPrice)
                 .build();
@@ -58,14 +58,24 @@ public class OrderServiceImpl implements OrderService {
     public Order createOrder() {
         Order order = getOrderCreationInfo();
 
-        List<ProductBasket> basketProducts = order.getBasketProducts();
+        List<ProductBasket> basketProducts = productBasketService.getBasketProductsByUser();
+
+        List<ProductQuantity> productQuantities = new ArrayList<>();
 
         basketProducts.forEach(basketProduct -> {
             int productID = basketProduct.getProduct().getId();
             Product product = productService.getProductById(productID);
             product.setQuantity(product.getQuantity() - basketProduct.getQuantity());
             productService.saveProduct(product);
+
+            ProductQuantity productQuantity = ProductQuantity.builder()
+                    .product(product)
+                    .quantity(basketProduct.getQuantity())
+                    .build();
+            productQuantities.add(productQuantity);
         });
+
+        order.setProductQuantities(productQuantities);
 
         return orderRepository.save(order);
     }

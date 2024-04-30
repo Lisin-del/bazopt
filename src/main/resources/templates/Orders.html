@@ -48,8 +48,33 @@
         </div>
     </header>
 
-    <div th:each="order : ${orders}">
-        <p th:text="${order.getPrice()}"></p>
+    <div class="container text-center productRowTopMargin">
+        <div th:each="order : ${orders}">
+            <div class="row">
+                <div class="col">
+                    <p><strong>ID</strong></p>
+                    <h5 th:text="${order.getId()}"></h5>
+                    <p th:text="'Заказчик: ' + ${order.getUser().getFirstname()} + ' ' + ${order.getUser().getLastname()}"></p>
+                </div>
+                <div class="col textAlignLeft">
+                    <p><strong>Позиции</strong></p>
+                    <div th:each="basketProduct : ${order.getProducts()}">
+                        <p th:text="${basketProduct.getProduct().getName()} + ' - ' + ${basketProduct.getQuantity()}"></p>
+                    </div>
+                </div>
+                <div class="col">
+                    <p><strong>Адрес</strong></p>
+                    <p th:text="${order.getAddress()}"></p>
+                </div>
+                <div class="col">
+                    <p><strong>Цена</strong></p>
+                    <p><strong th:text="${order.getPrice()} + ' руб.'"></strong></p>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn btn-dark">Удалить</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="../js/customJSlogic.js"></script>

@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import ru.lisin.bazopt.model.Order;
 import ru.lisin.bazopt.services.OrderService;
 
@@ -33,6 +34,7 @@ public class OrderController {
     }
 
     @PostMapping(path = "/create")
+    @ResponseBody
     public void createOrder() {
         orderService.createOrder();
     }
