@@ -39,7 +39,7 @@ function getOrderCreationInfo() {
 }
 
 function getAllOrders() {
-    window.location.href = "http://127.0.0.1:8080/oreder/all"
+    window.location.href = "http://127.0.0.1:8080/order/all"
 }
 
 async function createOrder() {
@@ -288,6 +288,30 @@ async function addToBasket(productId) {
         
         if (basketResponse.status === 200) {
             window.location.href = basketResponse.url;
+        }
+    } else {
+        throw new Error("There are errors with CSRF token getting");
+    }
+}
+
+async function deleteOrderByID(orderID) {
+    url = "http://127.0.0.1:8080/order/delete?id=".concat(orderID);
+
+    csrfResponse = await fetch("http://127.0.0.1:8080/csrf");
+
+    if (csrfResponse.status === 200) {
+        csrfJson = await csrfResponse.json();
+        
+        headers = {};
+        headers[csrfJson.headerName] = csrfJson.token;
+        
+        orderResponse = await fetch(url, {
+            method: "DELETE",
+            headers: headers
+        });
+        
+        if (orderResponse.status === 200) {
+            getAllOrders();
         }
     } else {
         throw new Error("There are errors with CSRF token getting");

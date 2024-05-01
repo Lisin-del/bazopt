@@ -1,5 +1,6 @@
 package ru.lisin.bazopt.services.impl;
 
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.lisin.bazopt.model.*;
@@ -58,6 +59,14 @@ public class OrderServiceImpl implements OrderService {
     public Order createOrder() {
         Order order = getOrderCreationInfo();
 
+        Order newOrder = Order.builder()
+                .id(order.getId())
+                .user(order.getUser())
+                .address(order.getAddress())
+                .price(order.getPrice())
+                .products(new ArrayList<>() {{addAll(order.getProducts());}})
+                .build();
+
         List<ProductBasket> basketProducts = productBasketService.getBasketProductsByUser();
 
         List<ProductQuantity> productQuantities = new ArrayList<>();
@@ -70,18 +79,29 @@ public class OrderServiceImpl implements OrderService {
 
             ProductQuantity productQuantity = ProductQuantity.builder()
                     .product(product)
+                    //.order(newOrder)
                     .quantity(basketProduct.getQuantity())
                     .build();
+
+            productQuantityService.save(productQuantity);
+
             productQuantities.add(productQuantity);
+
+            productBasketService.deleteProduct(basketProduct.getId());
         });
 
-        order.setProductQuantities(productQuantities);
+        newOrder.setProductQuantities(productQuantities);
 
-        return orderRepository.save(order);
+        return orderRepository.save(newOrder);
     }
 
     @Override
     public List<Order> getAllOrders() {
         return orderRepository.findAll();
+    }
+
+    @Override
+    public void deleteOrderByID(int id) {
+        orderRepository.deleteById(id);
     }
 }

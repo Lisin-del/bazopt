@@ -10,4 +10,6 @@ public interface OrderService {
     Order createOrder();
 
     List<Order> getAllOrders();
+
+    void deleteOrderByID(int id);
 }

@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class ProductBasket {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    private int id;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

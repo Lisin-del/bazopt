@@ -58,8 +58,8 @@
                 </div>
                 <div class="col textAlignLeft">
                     <p><strong>Позиции</strong></p>
-                    <div th:each="basketProduct : ${order.getProducts()}">
-                        <p th:text="${basketProduct.getProduct().getName()} + ' - ' + ${basketProduct.getQuantity()}"></p>
+                    <div th:each="product : ${order.getProducts()}">
+                        <p th:text="${product.getName()} + ' - ' + ${quantity.get(order.getId()).get(product.getId())}"></p>
                     </div>
                 </div>
                 <div class="col">
@@ -71,7 +71,7 @@
                     <p><strong th:text="${order.getPrice()} + ' руб.'"></strong></p>
                 </div>
                 <div class="col">
-                    <button type="button" class="btn btn btn-dark">Удалить</button>
+                    <button type="button" class="btn btn btn-dark" th:order-id="${order.getId()}" th:onClick="deleteOrderByID(this.getAttribute('order-id'))">Удалить</button>
                 </div>
             </div>
         </div>

@@ -5,12 +5,17 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import java.util.List;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@OnDelete(action = OnDeleteAction.CASCADE)
 public class ProductQuantity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -19,4 +24,7 @@ public class ProductQuantity {
     @JoinColumn(name = "product_id")
     private Product product;
     private long quantity;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id")
+    private Order order;
 }

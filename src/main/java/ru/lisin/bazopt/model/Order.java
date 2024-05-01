@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Product> products;
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -25,7 +27,7 @@ public class Order {
     @Column(length = 500)
     private String address;
     private long price;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "prod_quan_id")
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH}, orphanRemoval = true)
+    @JoinColumn(name = "order_id")
     private List<ProductQuantity> productQuantities;
 }
