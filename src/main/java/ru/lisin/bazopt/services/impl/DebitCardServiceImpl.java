@@ -30,6 +30,7 @@ public class DebitCardServiceImpl implements DebitCardService {
             existingDebitCard.setExpirationDate(savedCard.getExpirationDate());
             return debitCardRepository.save(existingDebitCard);
         } else {
+            savedCard.setUser(userService.getCurrentUser());
             return debitCardRepository.save(savedCard);
         }
     }
