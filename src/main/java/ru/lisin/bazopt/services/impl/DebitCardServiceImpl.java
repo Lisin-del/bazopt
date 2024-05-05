@@ -3,6 +3,7 @@ package ru.lisin.bazopt.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.lisin.bazopt.model.DebitCard;
+import ru.lisin.bazopt.model.User;
 import ru.lisin.bazopt.repository.DebitCardRepository;
 import ru.lisin.bazopt.services.DebitCardService;
 import ru.lisin.bazopt.services.UserService;
@@ -22,15 +23,19 @@ public class DebitCardServiceImpl implements DebitCardService {
     public DebitCard saveCard(DebitCard savedCard) {
         DebitCard existingDebitCard = debitCardRepository.getDebitCardByNumber(savedCard.getCardNumber());
 
+        User currentUser = userService.getCurrentUser();
+
         if (existingDebitCard != null) {
-            existingDebitCard.setUser(userService.getCurrentUser());
+            existingDebitCard.setUser(currentUser);
             existingDebitCard.setCardNumber(savedCard.getCardNumber());
             existingDebitCard.setCvv(savedCard.getCvv());
             existingDebitCard.setUserFullName(savedCard.getUserFullName());
             existingDebitCard.setExpirationDate(savedCard.getExpirationDate());
             return debitCardRepository.save(existingDebitCard);
         } else {
-            savedCard.setUser(userService.getCurrentUser());
+            deleteDebitCardByUserID(currentUser.getId());
+
+            savedCard.setUser(currentUser);
             return debitCardRepository.save(savedCard);
         }
     }
@@ -38,5 +43,11 @@ public class DebitCardServiceImpl implements DebitCardService {
     @Override
     public DebitCard getDebitCardByUserID(long userID) {
         return debitCardRepository.getDebitCardByUserID(userID);
+    }
+
+    @Override
+    public void deleteDebitCardByUserID(long userID) {
+        DebitCard debitCardByUserID = getDebitCardByUserID(userID);
+        debitCardRepository.delete(debitCardByUserID);
     }
 }

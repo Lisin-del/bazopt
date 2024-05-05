@@ -16,7 +16,7 @@ public class DebitCard {
     private String cardNumber;
     private String expirationDate;
     private int cvv;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "user_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;

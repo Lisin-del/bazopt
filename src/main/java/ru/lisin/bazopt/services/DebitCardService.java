@@ -6,4 +6,6 @@ public interface DebitCardService {
     DebitCard saveCard(DebitCard savedCard);
 
     DebitCard getDebitCardByUserID(long userID);
+
+    void deleteDebitCardByUserID(long userID);
 }
