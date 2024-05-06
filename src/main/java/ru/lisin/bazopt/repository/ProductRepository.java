@@ -17,4 +17,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     @Query(value = "SELECT p FROM Product p WHERE p.base.id = :baseID")
     List<Product> getProductsByBaseID(@Param(value = "baseID") int baseID);
 
+    @Query(value = "SELECT * FROM product p WHERE LOWER(p.name) LIKE %:productName% ORDER BY p.price ASC FETCH FIRST 1 ROWS ONLY", nativeQuery = true)
+    Product getProductWithBestPriceByName(@Param(value = "productName") String productName);
 }

@@ -59,12 +59,19 @@
                         <td><button type="button" class="btn btn btn-dark" th:product-id="${product.getId()}" th:onclick="addToBasket(this.getAttribute('product-id'))">Добавить в корзину</button></td>
                         <td><input type="number" class="form-control" id="quantity" placeholder="Количество"></td>
                     </tr>
+                    <tr>
+                        <td><button type="button" class="btn btn btn-warning" th:product-id="${product.getId()}" th:onclick="getProductWithBestPrice(this.getAttribute('product-id'))">Лучшая цена</button></td>
+                        <td></td>
+                    </tr>
                 </table>
             </div>
             <div class="col-10 col-sm-8 col-lg-6">
                 <img th:src="@{../img/{image_name}(image_name=${product.getPhotoName()})}" class="d-block mx-lg-auto img-fluid productPhotoRadius" alt="Bootstrap Themes"
                     width="500" height="300" loading="lazy">
                 
+            </div>
+            <div class="col-10 col-sm-8 col-lg-6">
+                <p><strong th:text="'Цена: ' + ${product.getPrice()} + ' руб.'"></strong></p>
             </div>
         </div>
         <table class="table table-striped">

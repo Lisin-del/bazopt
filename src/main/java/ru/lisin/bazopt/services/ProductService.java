@@ -17,4 +17,6 @@ public interface ProductService {
     List<Product> getProductsByBaseID(int baseID);
 
     Product saveProduct(Product product);
+
+    Product getProductWithBestPrice(int productID);
 }

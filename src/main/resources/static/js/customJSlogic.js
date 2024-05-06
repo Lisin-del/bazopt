@@ -42,6 +42,10 @@ function getAllOrders() {
     window.location.href = "http://127.0.0.1:8080/order/all"
 }
 
+function getProductWithBestPrice(productID) {
+    window.location.href = "http://127.0.0.1:8080/product/bestPrice?productID=".concat(productID);
+}
+
 async function createOrder() {
     try {
         csrfResponse = await fetch("http://127.0.0.1:8080/csrf");

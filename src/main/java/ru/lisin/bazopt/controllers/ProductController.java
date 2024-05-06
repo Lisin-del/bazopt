@@ -74,4 +74,15 @@ public class ProductController {
         model.addAttribute("products", productsByBaseID);
         return "Products";
     }
+
+    @GetMapping(path = "/product/bestPrice")
+    public String getProductWithBestPrice(@RequestParam(name = "productID") int productID, Model model) {
+        Product product = productService.getProductWithBestPrice(productID);
+        ProductTechnicalCharacteristic productCharacteristic = productTechnicalCharacteristicService.getByProductId(
+                product.getId()
+        );
+        model.addAttribute("product", product);
+        model.addAttribute("productChar", productCharacteristic);
+        return "Product";
+    }
 }

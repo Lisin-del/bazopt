@@ -61,4 +61,10 @@ public class ProductServiceImpl implements ProductService {
     public Product saveProduct(Product product) {
         return productRepository.save(product);
     }
+
+    @Override
+    public Product getProductWithBestPrice(int productID) {
+        Product product = getProductById(productID);
+        return productRepository.getProductWithBestPriceByName(product.getName().toLowerCase());
+    }
 }
