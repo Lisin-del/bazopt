@@ -1,12 +1,12 @@
-package ru.lisin.bazopt.controllers;
+package ru.lisin.bazopt.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.lisin.bazopt.model.Order;
-import ru.lisin.bazopt.services.OrderService;
-import ru.lisin.bazopt.services.ProductQuantityService;
+import ru.lisin.bazopt.service.OrderService;
+import ru.lisin.bazopt.service.ProductQuantityService;
 
 import java.util.List;
 

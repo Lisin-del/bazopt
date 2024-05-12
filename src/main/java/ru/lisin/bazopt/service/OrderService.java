@@ -1,4 +1,4 @@
-package ru.lisin.bazopt.services;
+package ru.lisin.bazopt.service;
 
 import ru.lisin.bazopt.model.Order;
 

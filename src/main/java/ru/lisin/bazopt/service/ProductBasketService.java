@@ -1,6 +1,5 @@
-package ru.lisin.bazopt.services;
+package ru.lisin.bazopt.service;
 
-import ru.lisin.bazopt.model.Product;
 import ru.lisin.bazopt.model.ProductBasket;
 
 import java.util.List;

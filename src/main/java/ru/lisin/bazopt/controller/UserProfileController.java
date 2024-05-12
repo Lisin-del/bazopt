@@ -1,4 +1,4 @@
-package ru.lisin.bazopt.controllers;
+package ru.lisin.bazopt.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.lisin.bazopt.model.DebitCard;
 import ru.lisin.bazopt.model.User;
-import ru.lisin.bazopt.services.DebitCardService;
-import ru.lisin.bazopt.services.UserService;
+import ru.lisin.bazopt.service.DebitCardService;
+import ru.lisin.bazopt.service.UserService;
 
 @Controller
 public class UserProfileController {

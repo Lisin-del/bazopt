@@ -1,10 +1,10 @@
-package ru.lisin.bazopt.services.impl;
+package ru.lisin.bazopt.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.lisin.bazopt.model.ProductTechnicalCharacteristic;
 import ru.lisin.bazopt.repository.ProductTechnicalCharRepository;
-import ru.lisin.bazopt.services.ProductTechnicalCharacteristicService;
+import ru.lisin.bazopt.service.ProductTechnicalCharacteristicService;
 
 @Service
 public class ProductTechnicalCharacteristicServiceImpl implements ProductTechnicalCharacteristicService {

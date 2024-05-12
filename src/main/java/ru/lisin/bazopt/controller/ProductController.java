@@ -1,4 +1,4 @@
-package ru.lisin.bazopt.controllers;
+package ru.lisin.bazopt.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.lisin.bazopt.model.Product;
 import ru.lisin.bazopt.model.ProductFilter;
 import ru.lisin.bazopt.model.ProductTechnicalCharacteristic;
-import ru.lisin.bazopt.services.ProductService;
-import ru.lisin.bazopt.services.ProductTechnicalCharacteristicService;
+import ru.lisin.bazopt.service.ProductService;
+import ru.lisin.bazopt.service.ProductTechnicalCharacteristicService;
 
 import java.util.List;
 

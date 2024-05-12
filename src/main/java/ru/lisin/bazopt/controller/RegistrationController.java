@@ -1,10 +1,10 @@
-package ru.lisin.bazopt.controllers;
+package ru.lisin.bazopt.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.lisin.bazopt.model.User;
-import ru.lisin.bazopt.services.UserService;
+import ru.lisin.bazopt.service.UserService;
 
 @RestController
 public class RegistrationController {

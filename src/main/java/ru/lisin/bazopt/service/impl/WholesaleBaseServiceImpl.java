@@ -1,10 +1,10 @@
-package ru.lisin.bazopt.services.impl;
+package ru.lisin.bazopt.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.lisin.bazopt.model.WholesaleBase;
 import ru.lisin.bazopt.repository.WholesaleBaseRepository;
-import ru.lisin.bazopt.services.WholesaleBaseService;
+import ru.lisin.bazopt.service.WholesaleBaseService;
 
 import java.util.List;
 

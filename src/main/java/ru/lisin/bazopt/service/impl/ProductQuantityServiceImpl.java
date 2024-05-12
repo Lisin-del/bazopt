@@ -1,4 +1,4 @@
-package ru.lisin.bazopt.services.impl;
+package ru.lisin.bazopt.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -6,7 +6,7 @@ import ru.lisin.bazopt.model.Order;
 import ru.lisin.bazopt.model.Product;
 import ru.lisin.bazopt.model.ProductQuantity;
 import ru.lisin.bazopt.repository.ProductQuantityRepository;
-import ru.lisin.bazopt.services.ProductQuantityService;
+import ru.lisin.bazopt.service.ProductQuantityService;
 
 import java.util.HashMap;
 import java.util.List;

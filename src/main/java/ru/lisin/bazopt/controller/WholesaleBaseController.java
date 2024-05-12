@@ -1,15 +1,13 @@
-package ru.lisin.bazopt.controllers;
+package ru.lisin.bazopt.controller;
 
-import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.lisin.bazopt.model.WholesaleBase;
-import ru.lisin.bazopt.services.WholesaleBaseService;
+import ru.lisin.bazopt.service.WholesaleBaseService;
 
 import java.util.List;
 

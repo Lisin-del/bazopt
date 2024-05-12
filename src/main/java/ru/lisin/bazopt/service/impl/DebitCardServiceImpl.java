@@ -1,12 +1,12 @@
-package ru.lisin.bazopt.services.impl;
+package ru.lisin.bazopt.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.lisin.bazopt.model.DebitCard;
 import ru.lisin.bazopt.model.User;
 import ru.lisin.bazopt.repository.DebitCardRepository;
-import ru.lisin.bazopt.services.DebitCardService;
-import ru.lisin.bazopt.services.UserService;
+import ru.lisin.bazopt.service.DebitCardService;
+import ru.lisin.bazopt.service.UserService;
 
 @Service
 public class DebitCardServiceImpl implements DebitCardService {

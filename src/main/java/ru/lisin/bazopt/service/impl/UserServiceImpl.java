@@ -1,13 +1,12 @@
-package ru.lisin.bazopt.services.impl;
+package ru.lisin.bazopt.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.lisin.bazopt.model.User;
 import ru.lisin.bazopt.repository.UserRepository;
-import ru.lisin.bazopt.services.UserService;
+import ru.lisin.bazopt.service.UserService;
 
 import java.util.Optional;
 

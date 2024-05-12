@@ -1,4 +1,4 @@
-package ru.lisin.bazopt.services.impl;
+package ru.lisin.bazopt.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 import ru.lisin.bazopt.model.ProductBasket;
 import ru.lisin.bazopt.model.User;
 import ru.lisin.bazopt.repository.ProductBasketRepository;
-import ru.lisin.bazopt.services.ProductBasketService;
-import ru.lisin.bazopt.services.ProductService;
-import ru.lisin.bazopt.services.UserService;
+import ru.lisin.bazopt.service.ProductBasketService;
+import ru.lisin.bazopt.service.ProductService;
+import ru.lisin.bazopt.service.UserService;
 
 import java.util.List;
 
