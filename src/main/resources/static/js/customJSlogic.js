@@ -144,6 +144,10 @@ async function updateUserInfo() {
     }
 }
 
+function redirectToRegistrationErrorPage() {
+    window.location.href = "http://127.0.0.1:8080/registrationError"
+}
+
 async function sendRegistrationData() {
     try {
         let formData = new FormData(document.getElementById("registrationFormContainer"));
@@ -168,10 +172,18 @@ async function sendRegistrationData() {
             headers: headers,
             body: userJson
         });
+        
+        errorText = await registrationResponse.text();
+        
+        if (errorText !== "") {
+            redirectToRegistrationErrorPage();
+        } else {
+            redirectToLoginPage();
+        }
+
     } catch (e) {
         console.error(e);
     }
-    redirectToLoginPage();
 }
 
 async function sendLoginData() {

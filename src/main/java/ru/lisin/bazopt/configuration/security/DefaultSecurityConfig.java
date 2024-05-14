@@ -36,6 +36,7 @@ public class DefaultSecurityConfig {
                                     "/registration",
                                     "/register",
                                     "/login",
+                                    "/registrationError",
                                     "/csrf",
                                     "/login/process"
                             ).permitAll()

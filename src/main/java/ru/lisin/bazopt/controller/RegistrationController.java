@@ -17,15 +17,16 @@ public class RegistrationController {
         this.userService = userService;
     }
 
-    @PostMapping(path = "/register")
+    @PostMapping(path = "/register", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
     public String registerNewUser(@RequestBody User user, Model model) {
         User existingUser = userService.getUserByEmail(user.getEmail());
         if (existingUser != null) {
             model.addAttribute("error", "User with the same email exists bddd!");
-            return "registration";
+            return "error";
         }
         userService.createUser(user);
-        return "redirect:/login";
+        return "";
     }
 
     @GetMapping(path = "/getUser", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -41,5 +42,10 @@ public class RegistrationController {
     @GetMapping(path = "/login")
     public String getLogin() {
         return "login";
+    }
+
+    @GetMapping(path = "/registrationError")
+    public String getRegistrationErrorPage() {
+        return "RegError";
     }
 }
