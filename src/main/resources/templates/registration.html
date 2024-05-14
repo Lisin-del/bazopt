@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/custom.css">
 </head>
 
 <body>
@@ -40,9 +40,12 @@
             </div>
             <div class="col"></div>
         </div>
+        <!-- <div class="row">
+            <p th:text="${#strings.defaultString(error,'Empty String')}"></p>
+        </div> -->
     </div>
 
-    <script src="js/customJSlogic.js"></script>
+    <script src="../js/customJSlogic.js"></script>
 </body>
 
 </html>

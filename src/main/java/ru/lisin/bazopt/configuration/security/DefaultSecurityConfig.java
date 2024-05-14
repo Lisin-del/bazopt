@@ -33,15 +33,16 @@ public class DefaultSecurityConfig {
                             authorizationHttpRequest -> authorizationHttpRequest.requestMatchers(
                                     "/js/**",
                                     "/css/**",
-                                    "/registration.html",
+                                    "/registration",
                                     "/register",
+                                    "/login",
                                     "/csrf",
                                     "/login/process"
                             ).permitAll()
                     ).authorizeHttpRequests(
                             authorizationHttpRequest -> authorizationHttpRequest.anyRequest().authenticated()
                     ).formLogin(
-                            formLogin -> formLogin.loginPage("/login.html")
+                            formLogin -> formLogin.loginPage("/login")
                                     .loginProcessingUrl("/login/process")
                                     .usernameParameter("email")
                                     .passwordParameter("password")

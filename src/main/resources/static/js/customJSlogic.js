@@ -1,9 +1,9 @@
 function redirectToRegisterPage() {
-    window.location.href = "registration.html";
+    window.location.href = "http://127.0.0.1:8080/registration";
 }
 
 function redirectToLoginPage() {
-    window.location.href = "login.html";
+    window.location.href = "http://127.0.0.1:8080/login";
 }
 
 function redirectToHomePage() {
