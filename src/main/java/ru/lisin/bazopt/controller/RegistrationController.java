@@ -19,10 +19,9 @@ public class RegistrationController {
 
     @PostMapping(path = "/register", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public String registerNewUser(@RequestBody User user, Model model) {
+    public String registerNewUser(@RequestBody User user) {
         User existingUser = userService.getUserByEmail(user.getEmail());
         if (existingUser != null) {
-            model.addAttribute("error", "User with the same email exists bddd!");
             return "error";
         }
         userService.createUser(user);
