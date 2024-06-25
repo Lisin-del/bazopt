@@ -103,7 +103,6 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void deleteOrderByID(int id) {
         Order deletedOrder = orderRepository.findById(id).orElse(null);
-
         deletedOrder.getProducts().forEach(orderProduct -> {
             ProductQuantity productQuantity = productQuantityService.getProductQuantityByOrderIDAndProductID(
                     deletedOrder.getId(),
