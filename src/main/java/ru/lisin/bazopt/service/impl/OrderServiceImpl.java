@@ -96,7 +96,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getAllOrders() {
-        return orderRepository.findAll();
+        User currentUser = userService.getCurrentUser();
+        return orderRepository.getOrdersByUser(currentUser.getId());
     }
 
     @Override
